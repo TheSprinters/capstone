@@ -531,6 +531,19 @@ search_exclude: true
       transition: background 0.2s;
     }
     .chatbot-send:hover { background: #fbbf24; }
+    .chatbot-send:disabled { opacity: 0.5; cursor: not-allowed; }
+    .typing-indicator { display: flex; gap: 4px; padding: 12px 16px !important; align-items: center; }
+    .typing-indicator span {
+      width: 8px; height: 8px; background: #64748b; border-radius: 50%;
+      animation: typingDot 1.4s infinite ease-in-out both;
+    }
+    .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingDot {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
 
     /* ===== LOGIN MODAL ===== */
     .modal-overlay {
@@ -1265,19 +1278,8 @@ search_exclude: true
       document.getElementById('faqSection').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // ===== CHATBOT =====
-    const faqData = [
-      { q: ['member', 'join', 'become', 'enroll', 'sign up'], a: 'All sworn personnel of the San Diego County Sheriff\'s Department are eligible. Contact the DSA office at (858) 486-9009 or visit our headquarters at 13881 Danielson Street, Poway.' },
-      { q: ['dues', 'cost', 'fee', 'price'], a: 'DSA membership dues are set by the Board of Directors and are automatically deducted from your paycheck. Contact the office at (858) 486-9009 for current rates.' },
-      { q: ['insurance', 'health', 'dental', 'vision', 'medical'], a: 'DSA members have access to group health insurance (medical, dental, vision), life insurance, disability insurance, and supplemental coverage. We negotiate competitive rates with major providers.' },
-      { q: ['legal', 'defense', 'lawyer', 'attorney'], a: 'The DSA Legal Defense Fund provides representation for administrative investigations, critical incidents, and civil litigation arising from your duties. Contact the DSA office immediately if you need help.' },
-      { q: ['wellness', 'mental health', 'stress', 'counseling', 'fitness'], a: 'Our wellness program includes peer support counseling, mental health resources, fitness facility access, and stress management workshops. All services are confidential.' },
-      { q: ['event', 'picnic', 'meeting', 'rsvp'], a: 'You can RSVP through the member portal, by calling the office, or via the RSVP buttons on this page. Check the Events section for upcoming activities.' },
-      { q: ['store', 'merchandise', 'apparel', 'buy', 'shop'], a: 'Visit the DSA Store section or stop by the office in Poway. We carry official apparel, accessories, and memorabilia. Member discounts apply automatically.' },
-      { q: ['contact', 'phone', 'email', 'address', 'location'], a: 'DSA Headquarters: 13881 Danielson Street, Poway, CA 92064. Phone: (858) 486-9009. Email: info@dsasd.org.' },
-      { q: ['contract', 'negotiation', 'bargaining', 'wage', 'salary'], a: 'The DSA bargaining team negotiates contracts covering wages, benefits, and working conditions. Check the News section for the latest updates on negotiations.' },
-      { q: ['newsletter', 'minutes', 'publication'], a: 'Monthly newsletters and board meeting minutes are available in the Newsletters section of the member portal. Back issues are archived for reference.' },
-    ];
+    // ===== CHATBOT (AI-powered via Claude API) =====
+    let chatHistory = []; // conversation history for context
 
     function toggleChatbot() {
       document.getElementById('chatbotWindow').classList.toggle('open');
@@ -1290,26 +1292,70 @@ search_exclude: true
       input.value = '';
 
       addChatMessage(msg, 'user');
+      chatHistory.push({ role: 'user', content: msg });
 
-      const q = msg.toLowerCase();
-      let answer = null;
-      for (const faq of faqData) {
-        if (faq.q.some(keyword => q.includes(keyword))) {
-          answer = faq.a;
-          break;
-        }
-      }
+      // Show typing indicator
+      const typingId = showTypingIndicator();
 
-      setTimeout(() => {
-        addChatMessage(answer || "I'm not sure about that. You can call the DSA office at (858) 486-9009 or email info@dsasd.org for help. You can also scroll down to the FAQ section for more topics.", 'bot');
-      }, 500);
+      // Disable send button while waiting
+      const sendBtn = document.querySelector('.chatbot-send');
+      sendBtn.disabled = true;
+      sendBtn.textContent = '...';
+
+      fetch(`${API_BASE}/api/sheriff/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          message: msg,
+          history: chatHistory.slice(-10) // send last 10 messages for context
+        })
+      })
+      .then(r => {
+        if (!r.ok) return r.json().then(d => { throw new Error(d.error || 'Chat service unavailable'); });
+        return r.json();
+      })
+      .then(data => {
+        removeTypingIndicator(typingId);
+        const reply = data.reply;
+        addChatMessage(reply, 'bot');
+        chatHistory.push({ role: 'assistant', content: reply });
+      })
+      .catch(err => {
+        removeTypingIndicator(typingId);
+        addChatMessage("Sorry, I'm having trouble connecting right now. You can reach the DSA office directly at (858) 486-9009 or info@dsasd.org.", 'bot');
+        console.error('Chat error:', err);
+      })
+      .finally(() => {
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send';
+      });
+    }
+
+    function showTypingIndicator() {
+      const container = document.getElementById('chatMessages');
+      const div = document.createElement('div');
+      const id = 'typing-' + Date.now();
+      div.id = id;
+      div.className = 'chat-msg bot';
+      div.innerHTML = '<div class="chat-bubble typing-indicator"><span></span><span></span><span></span></div>';
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+      return id;
+    }
+
+    function removeTypingIndicator(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
     }
 
     function addChatMessage(text, sender) {
       const container = document.getElementById('chatMessages');
       const div = document.createElement('div');
       div.className = 'chat-msg ' + sender;
-      div.innerHTML = '<div class="chat-bubble">' + text + '</div>';
+      // Sanitize text to prevent XSS
+      const safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+      div.innerHTML = '<div class="chat-bubble">' + safe + '</div>';
       container.appendChild(div);
       container.scrollTop = container.scrollHeight;
     }
