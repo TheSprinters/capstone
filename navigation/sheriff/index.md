@@ -11,1363 +11,768 @@ search_exclude: true
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deputy Sheriffs' Association of San Diego County</title>
   <style>
-    /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: #0a1628;
-      color: #e2e8f0;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    a { color: #60a5fa; text-decoration: none; transition: color 0.2s; }
-    a:hover { color: #93c5fd; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0b1a2e; color: #e2e8f0; line-height: 1.6; }
+    a { color: #60a5fa; text-decoration: none; }
 
-    /* ===== TOP BAR ===== */
-    .top-bar {
-      background: #1a2744;
-      padding: 6px 20px;
-      font-size: 0.8rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #2a3a5c;
-    }
-    .top-bar-left span { margin-right: 20px; color: #94a3b8; }
-    .top-bar-right a { margin-left: 15px; color: #94a3b8; }
-    .top-bar-right a:hover { color: #fbbf24; }
-
-    /* ===== HEADER / MEGA NAV ===== */
-    .main-header {
-      background: linear-gradient(135deg, #1e3a5f 0%, #0f2847 100%);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    /* ===== HEADER ===== */
+    .header {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(15,40,71,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      height: 70px;
+      max-width: 1200px; margin: 0 auto; height: 64px;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px; gap: 16px;
     }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .logo-badge {
-      width: 45px;
-      height: 45px;
-      background: linear-gradient(135deg, #fbbf24, #f59e0b);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: #1e3a5f;
-    }
-    .logo-text h1 { font-size: 1.1rem; color: #fff; font-weight: 700; letter-spacing: 0.5px; }
-    .logo-text span { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
+    .logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; cursor: pointer; }
+    .logo-badge { width: 38px; height: 38px; background: linear-gradient(135deg,#fbbf24,#d97706); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.8rem; color: #1e3a5f; }
+    .logo-text { font-size: 0.95rem; font-weight: 700; color: #fff; }
+    .logo-sub { font-size: 0.62rem; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; }
 
-    /* Nav menu */
-    .nav-menu { display: flex; gap: 0; height: 100%; align-items: stretch; }
-    .nav-item {
-      position: relative;
-      padding: 0 18px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      color: #cbd5e1;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.2s;
-      height: 100%;
+    nav { display: flex; gap: 2px; align-items: center; }
+    .nav-link {
+      padding: 8px 14px; border-radius: 8px; font-size: 0.82rem; font-weight: 500; color: #94a3b8;
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
     }
-    .nav-item:hover { color: #fbbf24; background: rgba(251,191,36,0.08); }
-    .nav-item .arrow { font-size: 0.6rem; margin-left: 5px; transition: transform 0.2s; }
-    .nav-item:hover .arrow { transform: rotate(180deg); }
+    .nav-link:hover, .nav-link.active { color: #fbbf24; background: rgba(251,191,36,0.08); }
 
-    /* Mega dropdown */
-    .mega-dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #1a2744;
-      border: 1px solid #2a3a5c;
-      border-radius: 0 0 12px 12px;
-      padding: 20px;
-      min-width: 300px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-      z-index: 999;
-    }
-    .nav-item:hover .mega-dropdown { display: block; }
-    .mega-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      transition: background 0.2s;
-      color: #cbd5e1;
-    }
-    .mega-link:hover { background: rgba(96,165,250,0.1); color: #60a5fa; }
-    .mega-icon { font-size: 1.2rem; width: 30px; text-align: center; }
-    .mega-label { font-size: 0.85rem; }
-    .mega-desc { font-size: 0.72rem; color: #64748b; }
+    .header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
-    /* Search bar */
-    .search-container {
-      position: relative;
-      width: 220px;
+    .search-box { position: relative; }
+    .search-box input {
+      width: 180px; padding: 7px 32px 7px 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; color: #e2e8f0; font-size: 0.8rem; outline: none; transition: all 0.25s;
     }
-    .search-input {
-      width: 100%;
-      padding: 8px 36px 8px 14px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid #2a3a5c;
-      border-radius: 25px;
-      color: #e2e8f0;
-      font-size: 0.85rem;
-      outline: none;
-      transition: all 0.3s;
+    .search-box input::placeholder { color: #475569; }
+    .search-box input:focus { border-color: #fbbf24; width: 240px; background: rgba(255,255,255,0.1); }
+    .search-box .icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #475569; font-size: 0.8rem; pointer-events: none; }
+    .search-dropdown {
+      display: none; position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+      background: #162a46; border: 1px solid #2a3a5c; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 1001;
     }
-    .search-input::placeholder { color: #64748b; }
-    .search-input:focus { border-color: #60a5fa; background: rgba(255,255,255,0.12); box-shadow: 0 0 0 3px rgba(96,165,250,0.15); }
-    .search-icon {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #64748b;
-      font-size: 0.9rem;
-      pointer-events: none;
-    }
-    .search-results {
-      display: none;
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
-      right: 0;
-      background: #1a2744;
-      border: 1px solid #2a3a5c;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      z-index: 1001;
-    }
-    .search-results.active { display: block; }
-    .search-result-item {
-      padding: 10px 14px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      color: #cbd5e1;
-      border-bottom: 1px solid #2a3a5c;
-      transition: background 0.15s;
-    }
-    .search-result-item:hover { background: rgba(96,165,250,0.1); }
-    .search-result-item:last-child { border-bottom: none; }
+    .search-dropdown.open { display: block; }
+    .search-item { padding: 10px 14px; font-size: 0.82rem; color: #cbd5e1; cursor: pointer; border-bottom: 1px solid #1e3352; }
+    .search-item:hover { background: rgba(251,191,36,0.08); color: #fbbf24; }
+    .search-item:last-child { border-bottom: none; }
 
-    /* Auth buttons */
-    .auth-buttons { display: flex; gap: 10px; align-items: center; }
-    .btn-login, .btn-signup {
-      padding: 8px 18px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s;
-    }
-    .btn-login { background: transparent; color: #fbbf24; border: 1px solid #fbbf24; }
-    .btn-login:hover { background: rgba(251,191,36,0.1); }
-    .btn-signup { background: linear-gradient(135deg, #f59e0b, #d97706); color: #1e3a5f; }
-    .btn-signup:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(245,158,11,0.3); }
+    .btn { padding: 7px 16px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
+    .btn-outline { background: transparent; color: #fbbf24; border: 1px solid rgba(251,191,36,0.4); }
+    .btn-outline:hover { background: rgba(251,191,36,0.1); }
+    .btn-gold { background: linear-gradient(135deg,#f59e0b,#d97706); color: #1e3a5f; }
+    .btn-gold:hover { box-shadow: 0 4px 14px rgba(245,158,11,0.3); }
 
-    /* User dropdown (shown when logged in) */
-    .user-dropdown { position: relative; display: none; }
-    .user-dropdown.active { display: block; }
-    .user-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      background: rgba(251,191,36,0.1);
-      border: 1px solid #fbbf24;
-      border-radius: 8px;
-      color: #fbbf24;
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 600;
+    .user-area { position: relative; display: none; }
+    .user-area.active { display: flex; align-items: center; }
+    .user-chip {
+      display: flex; align-items: center; gap: 6px; padding: 5px 12px;
+      background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.3); border-radius: 8px;
+      color: #fbbf24; font-size: 0.8rem; font-weight: 600; cursor: pointer;
     }
-    .user-menu {
-      display: none;
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      background: #1a2744;
-      border: 1px solid #2a3a5c;
-      border-radius: 10px;
-      min-width: 200px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      z-index: 1001;
-      overflow: hidden;
+    .user-panel {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: #162a46; border: 1px solid #2a3a5c; border-radius: 12px;
+      min-width: 220px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); overflow: hidden; z-index: 1001;
     }
-    .user-menu.active { display: block; }
-    .user-menu-item {
-      padding: 12px 16px;
-      cursor: pointer;
-      color: #cbd5e1;
-      font-size: 0.85rem;
-      border-bottom: 1px solid #2a3a5c;
-      transition: background 0.15s;
-    }
-    .user-menu-item:hover { background: rgba(96,165,250,0.1); }
-    .user-menu-item:last-child { border-bottom: none; }
-    .user-menu-header {
-      padding: 14px 16px;
-      background: rgba(251,191,36,0.05);
-      border-bottom: 1px solid #2a3a5c;
-    }
-    .user-menu-header .name { font-weight: 700; color: #fbbf24; font-size: 0.95rem; }
-    .user-menu-header .badge { font-size: 0.75rem; color: #94a3b8; }
+    .user-panel.open { display: block; }
+    .up-header { padding: 14px 16px; background: rgba(251,191,36,0.04); border-bottom: 1px solid #1e3352; }
+    .up-name { font-weight: 700; color: #fbbf24; }
+    .up-badge { font-size: 0.72rem; color: #64748b; }
+    .up-item { padding: 10px 16px; font-size: 0.82rem; color: #94a3b8; cursor: pointer; border-bottom: 1px solid #1e3352; }
+    .up-item:hover { background: rgba(96,165,250,0.06); color: #fff; }
 
-    /* Mobile menu */
-    .mobile-toggle {
-      display: none;
-      font-size: 1.5rem;
-      background: none;
-      border: none;
-      color: #fff;
-      cursor: pointer;
+    .back-link {
+      position: fixed; bottom: 20px; left: 20px; padding: 6px 14px;
+      background: rgba(96,165,250,0.12); border: 1px solid rgba(96,165,250,0.3); border-radius: 8px;
+      color: #60a5fa; font-size: 0.75rem; z-index: 999; transition: all 0.2s;
     }
+    .back-link:hover { background: #3b82f6; color: #fff; }
 
     /* ===== HERO ===== */
     .hero {
-      background: linear-gradient(135deg, #0f2847 0%, #1e3a5f 50%, #0a1628 100%);
-      padding: 80px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      padding: 100px 24px 80px; text-align: center;
+      background: linear-gradient(170deg, #0f2847 0%, #162a46 40%, #0b1a2e 100%);
+      position: relative; overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 50%, rgba(251,191,36,0.04) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 50%, rgba(96,165,250,0.04) 0%, transparent 50%);
-      animation: heroFloat 20s ease-in-out infinite;
+    .hero::after {
+      content: ''; position: absolute; top: 50%; left: 50%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(251,191,36,0.04) 0%, transparent 70%);
+      transform: translate(-50%,-50%); pointer-events: none;
     }
-    @keyframes heroFloat { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-20px, 10px); } }
-    .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
-    .hero h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero p { font-size: 1.15rem; color: #94a3b8; margin-bottom: 30px; line-height: 1.7; }
-    .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 40px; }
-    .hero-stat { text-align: center; }
-    .hero-stat .number { font-size: 2.2rem; font-weight: 800; color: #fbbf24; }
-    .hero-stat .label { font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
+    .hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .hero h2 { font-size: 2.6rem; font-weight: 800; background: linear-gradient(135deg,#fbbf24,#f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 14px; }
+    .hero p { font-size: 1.05rem; color: #7f8ea3; margin-bottom: 28px; }
+    .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .hero-cta .btn { padding: 12px 28px; font-size: 0.9rem; border-radius: 10px; }
+    .stats { display: flex; justify-content: center; gap: 48px; margin-top: 50px; flex-wrap: wrap; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: #fbbf24; }
+    .stat-label { font-size: 0.7rem; color: #475569; text-transform: uppercase; letter-spacing: 1px; }
 
-    /* ===== DASHBOARD TILES ===== */
-    .section-title { text-align: center; margin: 60px 0 30px; font-size: 1.8rem; font-weight: 700; color: #fff; }
-    .section-subtitle { text-align: center; color: #64748b; margin-top: -20px; margin-bottom: 30px; font-size: 0.95rem; }
+    /* ===== SECTIONS ===== */
+    .section { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
+    .sec-head { text-align: center; margin-bottom: 36px; }
+    .sec-head h2 { font-size: 1.7rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .sec-head p { color: #475569; font-size: 0.9rem; }
 
-    .dashboard { max-width: 1200px; margin: 0 auto; padding: 0 20px 40px; }
-    .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    /* Tiles */
+    .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .tile {
-      background: linear-gradient(145deg, #1a2744, #15203a);
-      border: 1px solid #2a3a5c;
-      border-radius: 14px;
-      padding: 24px;
-      cursor: pointer;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
+      background: rgba(22,42,70,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;
+      padding: 20px; cursor: pointer; transition: all 0.25s; position: relative;
     }
-    .tile::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #fbbf24, #f59e0b);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .tile:hover { transform: translateY(-4px); border-color: #fbbf24; box-shadow: 0 8px 30px rgba(251,191,36,0.1); }
-    .tile:hover::after { opacity: 1; }
-    .tile-icon { font-size: 2rem; margin-bottom: 12px; }
-    .tile-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 6px; color: #fff; }
-    .tile-desc { font-size: 0.82rem; color: #64748b; }
+    .tile:hover { border-color: #fbbf24; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    .tile-icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .tile-title { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .tile-desc { font-size: 0.76rem; color: #64748b; line-height: 1.5; }
 
-    /* ===== NEWS FEED ===== */
-    .news-section { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; }
-    .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
-    .news-card {
-      background: #1a2744;
-      border: 1px solid #2a3a5c;
-      border-radius: 14px;
-      padding: 24px;
-      transition: all 0.3s;
+    /* Expandable detail panel (opens inline, no page redirect) */
+    .detail-panel {
+      display: none; max-width: 1100px; margin: -20px auto 0; padding: 0 24px 40px;
+      animation: panelIn 0.3s ease;
     }
+    .detail-panel.open { display: block; }
+    @keyframes panelIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+    .dp-card {
+      background: #162a46; border: 1px solid #1e3352; border-radius: 14px; padding: 32px;
+      position: relative;
+    }
+    .dp-close { position: absolute; top: 14px; right: 18px; background: none; border: none; color: #475569; font-size: 1.4rem; cursor: pointer; }
+    .dp-close:hover { color: #ef4444; }
+    .dp-card h3 { font-size: 1.3rem; color: #fbbf24; margin-bottom: 16px; }
+    .dp-card p, .dp-card li { font-size: 0.88rem; color: #94a3b8; line-height: 1.7; }
+    .dp-card ul { padding-left: 20px; margin-top: 10px; }
+    .dp-card li { margin-bottom: 6px; }
+    .dp-card .dp-contact { margin-top: 16px; padding: 14px; background: rgba(251,191,36,0.05); border-radius: 8px; font-size: 0.82rem; color: #cbd5e1; }
+
+    /* News */
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .news-card { background: #162a46; border: 1px solid #1e3352; border-radius: 12px; padding: 22px; transition: border-color 0.2s; }
     .news-card:hover { border-color: #3b82f6; }
-    .news-tag {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 10px;
-    }
-    .tag-announcement { background: rgba(251,191,36,0.15); color: #fbbf24; }
-    .tag-event { background: rgba(96,165,250,0.15); color: #60a5fa; }
-    .tag-benefit { background: rgba(52,211,153,0.15); color: #34d399; }
-    .news-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: #fff; }
-    .news-card p { font-size: 0.85rem; color: #94a3b8; }
-    .news-date { font-size: 0.75rem; color: #475569; margin-top: 10px; }
+    .news-tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .t-ann { background: rgba(251,191,36,0.12); color: #fbbf24; }
+    .t-evt { background: rgba(96,165,250,0.12); color: #60a5fa; }
+    .t-ben { background: rgba(52,211,153,0.12); color: #34d399; }
+    .news-card h3 { font-size: 1rem; color: #fff; margin-bottom: 6px; }
+    .news-card p { font-size: 0.8rem; color: #7f8ea3; }
+    .news-date { font-size: 0.7rem; color: #3b4d6b; margin-top: 8px; }
 
-    /* ===== EVENTS CALENDAR ===== */
-    .events-section { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; }
-    .events-list { display: flex; flex-direction: column; gap: 12px; }
-    .event-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      background: #1a2744;
-      border: 1px solid #2a3a5c;
-      border-radius: 12px;
-      padding: 16px 20px;
-      transition: border-color 0.2s;
+    /* Events */
+    .ev-list { display: flex; flex-direction: column; gap: 10px; }
+    .ev {
+      display: flex; align-items: center; gap: 16px;
+      background: #162a46; border: 1px solid #1e3352; border-radius: 10px; padding: 14px 18px; transition: border-color 0.2s;
     }
-    .event-item:hover { border-color: #60a5fa; }
-    .event-date-box {
-      min-width: 55px;
-      text-align: center;
-      background: rgba(96,165,250,0.1);
-      border-radius: 8px;
-      padding: 8px;
+    .ev:hover { border-color: #60a5fa; }
+    .ev-date { min-width: 50px; text-align: center; background: rgba(96,165,250,0.08); border-radius: 8px; padding: 6px; }
+    .ev-date .m { font-size: 0.6rem; text-transform: uppercase; color: #60a5fa; letter-spacing: 1px; }
+    .ev-date .d { font-size: 1.3rem; font-weight: 800; color: #fff; }
+    .ev-info h4 { font-size: 0.88rem; color: #fff; }
+    .ev-info p { font-size: 0.75rem; color: #475569; }
+    .ev-rsvp {
+      margin-left: auto; padding: 6px 14px; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3);
+      border-radius: 6px; color: #60a5fa; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
     }
-    .event-date-box .month { font-size: 0.65rem; text-transform: uppercase; color: #60a5fa; letter-spacing: 1px; }
-    .event-date-box .day { font-size: 1.4rem; font-weight: 800; color: #fff; }
-    .event-info h4 { font-size: 0.95rem; color: #fff; margin-bottom: 3px; }
-    .event-info p { font-size: 0.8rem; color: #64748b; }
-    .event-rsvp {
-      margin-left: auto;
-      padding: 6px 16px;
-      background: rgba(96,165,250,0.15);
-      border: 1px solid #3b82f6;
-      border-radius: 6px;
-      color: #60a5fa;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .event-rsvp:hover { background: #3b82f6; color: #fff; }
+    .ev-rsvp:hover { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+    .ev-rsvp.done { background: rgba(52,211,153,0.1); border-color: #34d399; color: #34d399; pointer-events: none; }
 
-    /* ===== FAQ SECTION ===== */
-    .faq-section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px 60px;
-    }
-    .faq-search {
-      width: 100%;
-      padding: 14px 20px;
-      background: #1a2744;
-      border: 1px solid #2a3a5c;
-      border-radius: 12px;
-      color: #e2e8f0;
-      font-size: 1rem;
-      margin-bottom: 20px;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-    .faq-search:focus { border-color: #60a5fa; }
-    .faq-categories { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-    .faq-cat {
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid #2a3a5c;
-      color: #94a3b8;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .faq-cat.active, .faq-cat:hover { background: rgba(251,191,36,0.15); border-color: #fbbf24; color: #fbbf24; }
-    .faq-item {
-      background: #1a2744;
-      border: 1px solid #2a3a5c;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      overflow: hidden;
-      transition: border-color 0.2s;
-    }
-    .faq-item:hover { border-color: #3b82f6; }
-    .faq-question {
-      padding: 16px 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      color: #e2e8f0;
-      font-size: 0.95rem;
-    }
-    .faq-question .toggle { font-size: 1.2rem; transition: transform 0.3s; color: #fbbf24; }
-    .faq-question.open .toggle { transform: rotate(45deg); }
-    .faq-answer {
-      display: none;
-      padding: 0 20px 16px;
-      font-size: 0.88rem;
-      color: #94a3b8;
-      line-height: 1.7;
-    }
-    .faq-answer.open { display: block; }
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .about-card { background: #162a46; border: 1px solid #1e3352; border-radius: 12px; padding: 24px; }
+    .about-card h3 { font-size: 1.05rem; color: #fbbf24; margin-bottom: 10px; }
+    .about-card p { font-size: 0.84rem; color: #7f8ea3; }
+    .about-card ul { padding-left: 18px; margin-top: 8px; }
+    .about-card li { font-size: 0.82rem; color: #94a3b8; margin-bottom: 4px; }
 
-    /* ===== CHATBOT ===== */
-    .chatbot-trigger {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 6px 25px rgba(245,158,11,0.4);
-      z-index: 1100;
-      transition: all 0.3s;
-      border: none;
-      font-size: 1.5rem;
-    }
-    .chatbot-trigger:hover { transform: scale(1.1); }
-    .chatbot-window {
-      display: none;
-      position: fixed;
-      bottom: 100px;
-      right: 24px;
-      width: 380px;
-      max-height: 500px;
-      background: #1a2744;
-      border: 1px solid #2a3a5c;
-      border-radius: 16px;
-      z-index: 1100;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .chatbot-window.open { display: flex; }
-    .chatbot-header {
-      background: linear-gradient(135deg, #1e3a5f, #0f2847);
-      padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #2a3a5c;
-    }
-    .chatbot-header h3 { color: #fbbf24; font-size: 1rem; }
-    .chatbot-close { background: none; border: none; color: #94a3b8; font-size: 1.3rem; cursor: pointer; }
-    .chatbot-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px;
-      max-height: 340px;
-    }
-    .chat-msg {
-      margin-bottom: 12px;
-      display: flex;
-    }
-    .chat-msg.bot { justify-content: flex-start; }
-    .chat-msg.user { justify-content: flex-end; }
-    .chat-bubble {
-      max-width: 80%;
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-    .chat-msg.bot .chat-bubble { background: #15203a; color: #cbd5e1; border-bottom-left-radius: 4px; }
-    .chat-msg.user .chat-bubble { background: #3b82f6; color: #fff; border-bottom-right-radius: 4px; }
-    .chatbot-input-area {
-      display: flex;
-      gap: 8px;
-      padding: 12px 16px;
-      border-top: 1px solid #2a3a5c;
-      background: #15203a;
-    }
-    .chatbot-input {
-      flex: 1;
-      padding: 10px 14px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid #2a3a5c;
-      border-radius: 8px;
-      color: #e2e8f0;
-      font-size: 0.85rem;
-      outline: none;
-    }
-    .chatbot-send {
-      padding: 10px 16px;
-      background: #f59e0b;
-      border: none;
-      border-radius: 8px;
-      color: #1e3a5f;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .chatbot-send:hover { background: #fbbf24; }
-    .chatbot-send:disabled { opacity: 0.5; cursor: not-allowed; }
-    .typing-indicator { display: flex; gap: 4px; padding: 12px 16px !important; align-items: center; }
-    .typing-indicator span {
-      width: 8px; height: 8px; background: #64748b; border-radius: 50%;
-      animation: typingDot 1.4s infinite ease-in-out both;
-    }
-    .typing-indicator span:nth-child(1) { animation-delay: 0s; }
-    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes typingDot {
-      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-      40% { transform: scale(1); opacity: 1; }
-    }
+    /* FAQ */
+    .faq-wrap { max-width: 800px; margin: 0 auto; }
+    .faq-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+    .faq-bar input { flex: 1; min-width: 200px; padding: 10px 16px; background: #162a46; border: 1px solid #1e3352; border-radius: 10px; color: #e2e8f0; font-size: 0.88rem; outline: none; }
+    .faq-bar input:focus { border-color: #fbbf24; }
+    .faq-tag { padding: 5px 12px; border-radius: 16px; font-size: 0.72rem; font-weight: 600; background: rgba(255,255,255,0.04); border: 1px solid #1e3352; color: #64748b; cursor: pointer; transition: all 0.15s; }
+    .faq-tag.on, .faq-tag:hover { background: rgba(251,191,36,0.1); border-color: #fbbf24; color: #fbbf24; }
+    .fq { background: #162a46; border: 1px solid #1e3352; border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+    .fq-q { padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.9rem; color: #e2e8f0; }
+    .fq-q .t { color: #fbbf24; transition: transform 0.25s; font-size: 1.1rem; }
+    .fq-q.open .t { transform: rotate(45deg); }
+    .fq-a { display: none; padding: 0 18px 14px; font-size: 0.84rem; color: #7f8ea3; line-height: 1.7; }
+    .fq-a.open { display: block; }
 
-    /* ===== LOGIN MODAL ===== */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
+    /* Store */
+    .store-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .store-item {
+      background: #162a46; border: 1px solid #1e3352; border-radius: 12px; padding: 20px; text-align: center; transition: all 0.2s;
     }
-    .modal-overlay.active { display: flex; }
-    .modal {
-      background: linear-gradient(145deg, #1a2744, #15203a);
-      border: 1px solid #2a3a5c;
-      border-radius: 20px;
-      padding: 40px;
-      width: 100%;
-      max-width: 440px;
-      position: relative;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-    }
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 20px;
-      background: none;
-      border: none;
-      color: #64748b;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    .modal h2 { font-size: 1.6rem; color: #fbbf24; margin-bottom: 6px; }
-    .modal .modal-subtitle { color: #64748b; font-size: 0.9rem; margin-bottom: 24px; }
-    .modal-form .form-group { margin-bottom: 16px; }
-    .modal-form label { display: block; font-size: 0.8rem; color: #94a3b8; margin-bottom: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-    .modal-form input, .modal-form select {
-      width: 100%;
-      padding: 12px 14px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid #2a3a5c;
-      border-radius: 10px;
-      color: #e2e8f0;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-    .modal-form input:focus, .modal-form select:focus { border-color: #fbbf24; }
-    .modal-form select option { background: #1a2744; color: #e2e8f0; }
-    .modal-submit {
-      width: 100%;
-      padding: 14px;
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      border: none;
-      border-radius: 10px;
-      color: #1e3a5f;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 8px;
-      transition: all 0.2s;
-    }
-    .modal-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245,158,11,0.3); }
-    .modal-error { color: #ef4444; font-size: 0.85rem; margin-top: 10px; display: none; }
-    .modal-tabs { display: flex; gap: 0; margin-bottom: 24px; }
-    .modal-tab {
-      flex: 1;
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: #64748b;
-      border-bottom: 2px solid transparent;
-      transition: all 0.2s;
-    }
-    .modal-tab.active { color: #fbbf24; border-bottom-color: #fbbf24; }
+    .store-item:hover { border-color: #fbbf24; transform: translateY(-2px); }
+    .store-item .si-icon { font-size: 2rem; margin-bottom: 8px; }
+    .store-item h4 { font-size: 0.88rem; color: #fff; margin-bottom: 4px; }
+    .store-item p { font-size: 0.72rem; color: #475569; }
+    .store-item .price { font-size: 0.9rem; font-weight: 700; color: #fbbf24; margin-top: 8px; }
 
-    /* ===== FOOTER ===== */
-    .site-footer {
-      background: #0d1b2a;
-      border-top: 1px solid #1a2744;
-      padding: 40px 20px;
-      margin-top: 40px;
-    }
-    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
-    .footer-col h4 { color: #fbbf24; font-size: 0.9rem; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
-    .footer-col p, .footer-col a { font-size: 0.85rem; color: #64748b; display: block; margin-bottom: 8px; }
-    .footer-col a:hover { color: #fbbf24; }
-    .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #1a2744; color: #475569; font-size: 0.8rem; }
+    /* Contact */
+    .contact-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .c-card { background: #162a46; border: 1px solid #1e3352; border-radius: 12px; padding: 24px; text-align: center; }
+    .c-card .c-icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .c-card h4 { font-size: 0.9rem; color: #fff; margin-bottom: 4px; }
+    .c-card p { font-size: 0.82rem; color: #7f8ea3; }
+    .c-card a { color: #fbbf24; }
 
-    /* ===== BACK BUTTON ===== */
-    .back-to-main {
-      position: fixed;
-      top: 80px;
-      left: 16px;
-      padding: 8px 14px;
-      background: rgba(96,165,250,0.15);
-      border: 1px solid #3b82f6;
-      border-radius: 8px;
-      color: #60a5fa;
-      font-size: 0.8rem;
-      cursor: pointer;
-      z-index: 999;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-    .back-to-main:hover { background: #3b82f6; color: #fff; }
+    /* Admin */
+    .admin-section { display: none; }
+    .admin-section.open { display: block; }
+    .a-table { width: 100%; border-collapse: collapse; background: #162a46; border-radius: 12px; overflow: hidden; }
+    .a-table th { background: #0f2040; padding: 12px 16px; text-align: left; font-size: 0.72rem; color: #fbbf24; text-transform: uppercase; letter-spacing: 0.5px; }
+    .a-table td { padding: 10px 16px; border-bottom: 1px solid #1e3352; font-size: 0.82rem; color: #cbd5e1; }
+    .a-table tr:hover td { background: rgba(96,165,250,0.04); }
+    .badge-s { padding: 2px 8px; border-radius: 10px; font-size: 0.68rem; font-weight: 600; }
+    .badge-active { background: rgba(52,211,153,0.12); color: #34d399; }
 
-    /* ===== ADMIN PANEL ===== */
-    .admin-panel {
-      display: none;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px 60px;
-    }
-    .admin-panel.active { display: block; }
-    .admin-table { width: 100%; border-collapse: collapse; background: #1a2744; border-radius: 12px; overflow: hidden; }
-    .admin-table th { background: #15203a; padding: 14px 16px; text-align: left; font-size: 0.8rem; color: #fbbf24; text-transform: uppercase; letter-spacing: 0.5px; }
-    .admin-table td { padding: 12px 16px; border-bottom: 1px solid #2a3a5c; font-size: 0.85rem; color: #cbd5e1; }
-    .admin-table tr:hover td { background: rgba(96,165,250,0.05); }
-    .status-badge { padding: 3px 10px; border-radius: 12px; font-size: 0.72rem; font-weight: 600; }
-    .status-active { background: rgba(52,211,153,0.15); color: #34d399; }
-    .status-retired { background: rgba(148,163,184,0.15); color: #94a3b8; }
+    /* Footer */
+    footer { background: #091425; border-top: 1px solid #1e3352; padding: 36px 24px; margin-top: 40px; }
+    .ft-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; }
+    .ft-col h4 { color: #fbbf24; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .ft-col p, .ft-col a { font-size: 0.8rem; color: #3b4d6b; display: block; margin-bottom: 6px; }
+    .ft-col a:hover { color: #fbbf24; }
+    .ft-copy { text-align: center; margin-top: 24px; font-size: 0.72rem; color: #1e3352; }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .top-bar { display: none; }
-      .nav-menu { display: none; }
-      .mobile-toggle { display: block; }
+    /* Chatbot */
+    .cb-trigger {
+      position: fixed; bottom: 22px; right: 22px; width: 56px; height: 56px;
+      background: linear-gradient(135deg,#f59e0b,#d97706); border-radius: 50%; border: none;
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+      cursor: pointer; box-shadow: 0 6px 24px rgba(245,158,11,0.35); z-index: 1100; transition: transform 0.2s;
+    }
+    .cb-trigger:hover { transform: scale(1.08); }
+    .cb-win {
+      display: none; position: fixed; bottom: 90px; right: 22px; width: 370px; max-height: 480px;
+      background: #162a46; border: 1px solid #2a3a5c; border-radius: 14px;
+      z-index: 1100; box-shadow: 0 16px 50px rgba(0,0,0,0.5); flex-direction: column; overflow: hidden;
+    }
+    .cb-win.open { display: flex; }
+    .cb-head { background: #0f2040; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e3352; }
+    .cb-head h3 { color: #fbbf24; font-size: 0.92rem; }
+    .cb-x { background: none; border: none; color: #475569; font-size: 1.3rem; cursor: pointer; }
+    .cb-msgs { flex: 1; overflow-y: auto; padding: 14px; max-height: 320px; }
+    .cm { margin-bottom: 10px; display: flex; }
+    .cm.bot { justify-content: flex-start; }
+    .cm.user { justify-content: flex-end; }
+    .cb { max-width: 82%; padding: 9px 13px; border-radius: 10px; font-size: 0.82rem; line-height: 1.5; }
+    .cm.bot .cb { background: #0f2040; color: #cbd5e1; border-bottom-left-radius: 3px; }
+    .cm.user .cb { background: #3b82f6; color: #fff; border-bottom-right-radius: 3px; }
+    .cb-input { display: flex; gap: 8px; padding: 10px 14px; border-top: 1px solid #1e3352; background: #0f2040; }
+    .cb-input input { flex: 1; padding: 9px 12px; background: rgba(255,255,255,0.04); border: 1px solid #1e3352; border-radius: 8px; color: #e2e8f0; font-size: 0.82rem; outline: none; }
+    .cb-input button { padding: 9px 14px; background: #f59e0b; border: none; border-radius: 8px; color: #1e3a5f; font-weight: 700; font-size: 0.82rem; cursor: pointer; }
+    .cb-input button:disabled { opacity: 0.4; cursor: not-allowed; }
+    .typing-dots { display: flex; gap: 4px; padding: 10px 14px !important; align-items: center; }
+    .typing-dots span { width: 7px; height: 7px; background: #475569; border-radius: 50%; animation: tdot 1.4s infinite ease-in-out both; }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes tdot { 0%,80%,100% { transform: scale(0.5); opacity: 0.3; } 40% { transform: scale(1); opacity: 1; } }
+
+    /* Modal */
+    .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 2000; align-items: center; justify-content: center; }
+    .modal-bg.open { display: flex; }
+    .modal { background: #162a46; border: 1px solid #2a3a5c; border-radius: 16px; padding: 36px; width: 100%; max-width: 420px; position: relative; }
+    .modal-x { position: absolute; top: 14px; right: 16px; background: none; border: none; color: #475569; font-size: 1.4rem; cursor: pointer; }
+    .modal h2 { font-size: 1.4rem; color: #fbbf24; margin-bottom: 4px; }
+    .modal .sub { color: #475569; font-size: 0.82rem; margin-bottom: 20px; }
+    .mtabs { display: flex; margin-bottom: 20px; }
+    .mtab { flex: 1; padding: 8px; text-align: center; font-weight: 600; font-size: 0.85rem; color: #475569; border-bottom: 2px solid transparent; cursor: pointer; }
+    .mtab.on { color: #fbbf24; border-bottom-color: #fbbf24; }
+    .fg { margin-bottom: 14px; }
+    .fg label { display: block; font-size: 0.72rem; color: #64748b; margin-bottom: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .fg input, .fg select {
+      width: 100%; padding: 10px 12px; background: rgba(255,255,255,0.04); border: 1px solid #1e3352;
+      border-radius: 8px; color: #e2e8f0; font-size: 0.85rem; outline: none;
+    }
+    .fg input:focus, .fg select:focus { border-color: #fbbf24; }
+    .fg select option { background: #162a46; }
+    .modal-submit { width: 100%; padding: 12px; background: linear-gradient(135deg,#f59e0b,#d97706); border: none; border-radius: 10px; color: #1e3a5f; font-size: 0.95rem; font-weight: 700; cursor: pointer; margin-top: 6px; }
+    .modal-err { color: #ef4444; font-size: 0.8rem; margin-top: 8px; display: none; }
+
+    /* Mobile */
+    .mob-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+    @media (max-width: 900px) {
+      nav { display: none; }
+      .mob-toggle { display: block; }
+      .tiles { grid-template-columns: repeat(2, 1fr); }
+      .news-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .store-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-row { grid-template-columns: 1fr; }
+      .ft-inner { grid-template-columns: 1fr; }
       .hero h2 { font-size: 1.8rem; }
-      .hero-stats { flex-direction: column; gap: 20px; }
-      .search-container { width: 160px; }
-      .header-inner { height: 60px; }
-      .chatbot-window { width: calc(100% - 48px); right: 24px; }
+      .stats { gap: 20px; }
+      .search-box input { width: 140px; }
+      .cb-win { width: calc(100% - 40px); right: 20px; }
+    }
+    @media (max-width: 500px) {
+      .tiles { grid-template-columns: 1fr; }
+      .store-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Back to main site -->
-  <a href="{{ site.baseurl }}/" class="back-to-main">&#8592; Back to Main Site</a>
+<a href="{{ site.baseurl }}/" class="back-link">&#8592; Main Site</a>
 
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="top-bar-left">
-      <span>13881 Danielson St, Poway, CA 92064</span>
-      <span>(858) 486-9009</span>
-      <span>info@dsasd.org</span>
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo" onclick="scrollTo('#top')">
+      <div class="logo-badge">DSA</div>
+      <div><div class="logo-text">Deputy Sheriffs' Assoc.</div><div class="logo-sub">San Diego County</div></div>
     </div>
-    <div class="top-bar-right">
-      <a href="#">Member Resources</a>
-      <a href="#">Contact</a>
+    <nav>
+      <div class="nav-link" onclick="scrollTo('#dashboard')">Resources</div>
+      <div class="nav-link" onclick="scrollTo('#news')">News</div>
+      <div class="nav-link" onclick="scrollTo('#events')">Events</div>
+      <div class="nav-link" onclick="scrollTo('#about')">About</div>
+      <div class="nav-link" onclick="scrollTo('#store')">Store</div>
+      <div class="nav-link" onclick="scrollTo('#faq')">FAQ</div>
+      <div class="nav-link" onclick="scrollTo('#contact')">Contact</div>
+    </nav>
+    <div class="header-right">
+      <div class="search-box">
+        <input type="text" placeholder="Search..." id="searchInput" autocomplete="off">
+        <span class="icon">&#128269;</span>
+        <div class="search-dropdown" id="searchDrop"></div>
+      </div>
+      <div id="authBtns">
+        <button class="btn btn-outline" onclick="openModal('login')">Log In</button>
+        <button class="btn btn-gold" onclick="openModal('signup')">Join</button>
+      </div>
+      <div class="user-area" id="userArea">
+        <div class="user-chip" onclick="document.getElementById('userPanel').classList.toggle('open')">
+          &#9733; <span id="uName">Deputy</span> &#9662;
+        </div>
+        <div class="user-panel" id="userPanel">
+          <div class="up-header"><div class="up-name" id="upName">-</div><div class="up-badge" id="upBadge">-</div></div>
+          <div class="up-item" id="upRank">-</div>
+          <div class="up-item" id="upStation">-</div>
+          <div class="up-item" id="adminBtn" style="display:none" onclick="toggleAdmin()">&#128100; View All Members</div>
+          <div class="up-item" onclick="logout()" style="color:#ef4444">&#128682; Log Out</div>
+        </div>
+      </div>
+      <button class="mob-toggle" onclick="this.nextElementSibling?.classList.toggle('open')">&#9776;</button>
     </div>
   </div>
+</header>
 
-  <!-- Header with Mega Menu -->
-  <header class="main-header">
-    <div class="header-inner">
-      <div class="logo">
-        <div class="logo-badge">DSA</div>
-        <div class="logo-text">
-          <h1>Deputy Sheriffs' Association</h1>
-          <span>San Diego County</span>
-        </div>
-      </div>
-
-      <nav class="nav-menu">
-        <div class="nav-item">
-          About <span class="arrow">&#9660;</span>
-          <div class="mega-dropdown">
-            <a class="mega-link" href="#"><div class="mega-icon">&#9733;</div><div><div class="mega-label">Our Mission</div><div class="mega-desc">70 years of service</div></div></a>
-            <a class="mega-link" href="#"><div class="mega-icon">&#128101;</div><div><div class="mega-label">Leadership</div><div class="mega-desc">Board of Directors</div></div></a>
-            <a class="mega-link" href="#"><div class="mega-icon">&#128240;</div><div><div class="mega-label">History</div><div class="mega-desc">Since 1955</div></div></a>
-          </div>
-        </div>
-        <div class="nav-item">
-          Members <span class="arrow">&#9660;</span>
-          <div class="mega-dropdown">
-            <a class="mega-link" href="#"><div class="mega-icon">&#128179;</div><div><div class="mega-label">Benefits</div><div class="mega-desc">Insurance, legal, wellness</div></div></a>
-            <a class="mega-link" href="#"><div class="mega-icon">&#128197;</div><div><div class="mega-label">Events</div><div class="mega-desc">Upcoming activities</div></div></a>
-            <a class="mega-link" href="#"><div class="mega-icon">&#128196;</div><div><div class="mega-label">Documents</div><div class="mega-desc">Forms & resources</div></div></a>
-          </div>
-        </div>
-        <div class="nav-item">
-          News <span class="arrow">&#9660;</span>
-          <div class="mega-dropdown">
-            <a class="mega-link" href="#"><div class="mega-icon">&#128227;</div><div><div class="mega-label">Announcements</div><div class="mega-desc">Latest updates</div></div></a>
-            <a class="mega-link" href="#"><div class="mega-icon">&#128220;</div><div><div class="mega-label">Newsletters</div><div class="mega-desc">Monthly publications</div></div></a>
-            <a class="mega-link" href="#"><div class="mega-icon">&#128221;</div><div><div class="mega-label">Meeting Minutes</div><div class="mega-desc">Board meetings</div></div></a>
-          </div>
-        </div>
-        <div class="nav-item">Store</div>
-        <div class="nav-item" onclick="scrollToFAQ()">FAQ</div>
-      </nav>
-
-      <div class="search-container">
-        <input type="text" class="search-input" placeholder="Search DSA..." id="siteSearch" autocomplete="off">
-        <span class="search-icon">&#128269;</span>
-        <div class="search-results" id="searchResults"></div>
-      </div>
-
-      <div class="auth-buttons" id="authButtons">
-        <button class="btn-login" onclick="openModal('login')">Log In</button>
-        <button class="btn-signup" onclick="openModal('signup')">Sign Up</button>
-      </div>
-
-      <div class="user-dropdown" id="userDropdown">
-        <div class="user-btn" onclick="toggleUserMenu()">
-          <span>&#9733;</span>
-          <span id="userName">Deputy</span>
-          <span class="arrow">&#9660;</span>
-        </div>
-        <div class="user-menu" id="userMenu">
-          <div class="user-menu-header">
-            <div class="name" id="menuUserName">-</div>
-            <div class="badge" id="menuBadge">Badge: -</div>
-          </div>
-          <div class="user-menu-item" id="menuRank">Rank: -</div>
-          <div class="user-menu-item" id="menuStation">Station: -</div>
-          <div class="user-menu-item" id="adminPanelBtn" style="display:none;" onclick="toggleAdminPanel()">&#128100; View All Members</div>
-          <div class="user-menu-item" onclick="logoutSheriff()" style="color:#ef4444;">&#128682; Log Out</div>
-        </div>
-      </div>
-
-      <button class="mobile-toggle" onclick="toggleMobileNav()">&#9776;</button>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <h2>The Strength Behind the Badge</h2>
+    <p>Representing the dedicated officers of the San Diego County Sheriff's Department since 1955. Benefits, legal defense, events, and advocacy &mdash; all in one place.</p>
+    <div class="hero-cta">
+      <button class="btn btn-gold" onclick="scrollTo('#dashboard')">Explore Resources</button>
+      <button class="btn btn-outline" onclick="scrollTo('#about')">Learn About DSA</button>
     </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-content">
-      <h2>Protecting Those Who Protect Us</h2>
-      <p>The Deputy Sheriffs' Association of San Diego County is the labor union representing the dedicated officers of the San Diego County Sheriff's Department. For over 70 years, we've been providing essential benefits, organizing events, and advocating for deputies of all ranks.</p>
-      <div class="hero-stats">
-        <div class="hero-stat"><div class="number">4,229</div><div class="label">Active Members</div></div>
-        <div class="hero-stat"><div class="number">70+</div><div class="label">Years of Service</div></div>
-        <div class="hero-stat"><div class="number">12</div><div class="label">Stations Covered</div></div>
-        <div class="hero-stat"><div class="number">24/7</div><div class="label">Member Support</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Dashboard Tiles -->
-  <h2 class="section-title">Member Dashboard</h2>
-  <p class="section-subtitle">Quick access to everything you need</p>
-  <div class="dashboard">
-    <div class="tiles">
-      <div class="tile"><div class="tile-icon">&#128179;</div><div class="tile-title">Benefits & Insurance</div><div class="tile-desc">Health, dental, vision, and life insurance plans for you and your family.</div></div>
-      <div class="tile"><div class="tile-icon">&#128196;</div><div class="tile-title">Forms & Documents</div><div class="tile-desc">Downloadable forms, contracts, and important legal documents.</div></div>
-      <div class="tile"><div class="tile-icon">&#128197;</div><div class="tile-title">Events Calendar</div><div class="tile-desc">Upcoming meetings, social events, and training sessions.</div></div>
-      <div class="tile"><div class="tile-icon">&#128176;</div><div class="tile-title">DSA Store</div><div class="tile-desc">Official DSA merchandise and apparel for members.</div></div>
-      <div class="tile"><div class="tile-icon">&#128272;</div><div class="tile-title">Legal Defense</div><div class="tile-desc">Access to legal representation and defense fund resources.</div></div>
-      <div class="tile"><div class="tile-icon">&#127891;</div><div class="tile-title">Wellness Programs</div><div class="tile-desc">Mental health, fitness, and peer support programs.</div></div>
-      <div class="tile"><div class="tile-icon">&#128240;</div><div class="tile-title">Newsletters</div><div class="tile-desc">Monthly DSA newsletters and board meeting minutes.</div></div>
-      <div class="tile"><div class="tile-icon">&#127937;</div><div class="tile-title">Political Action</div><div class="tile-desc">DSA PAC updates and candidate endorsements.</div></div>
+    <div class="stats">
+      <div><div class="stat-num">4,229</div><div class="stat-label">Active Members</div></div>
+      <div><div class="stat-num">70+</div><div class="stat-label">Years of Service</div></div>
+      <div><div class="stat-num">12</div><div class="stat-label">Stations</div></div>
+      <div><div class="stat-num">24/7</div><div class="stat-label">Support</div></div>
     </div>
   </div>
+</section>
 
-  <!-- Latest News -->
-  <h2 class="section-title">Latest News</h2>
-  <div class="news-section">
-    <div class="news-grid">
-      <div class="news-card">
-        <span class="news-tag tag-announcement">Announcement</span>
-        <h3>2026 Contract Negotiations Update</h3>
-        <p>The DSA bargaining team has reached a tentative agreement with the county on wages, benefits, and working conditions for the next three years.</p>
-        <div class="news-date">March 15, 2026</div>
-      </div>
-      <div class="news-card">
-        <span class="news-tag tag-event">Event</span>
-        <h3>Annual DSA Family Picnic</h3>
-        <p>Join us at Poway Community Park on April 12th for our annual family picnic. Food, games, and fellowship for all DSA members and their families.</p>
-        <div class="news-date">March 10, 2026</div>
-      </div>
-      <div class="news-card">
-        <span class="news-tag tag-benefit">Benefit</span>
-        <h3>New Dental Plan Options Available</h3>
-        <p>We've partnered with Delta Dental to offer expanded coverage options. Open enrollment begins April 1st.</p>
-        <div class="news-date">March 5, 2026</div>
-      </div>
+<!-- DASHBOARD -->
+<div class="section" id="dashboard">
+  <div class="sec-head"><h2>Member Resources</h2><p>Click any tile to see details instantly &mdash; no extra pages</p></div>
+  <div class="tiles">
+    <div class="tile" onclick="openDetail('benefits')"><div class="tile-icon">&#128179;</div><div class="tile-title">Benefits</div><div class="tile-desc">Health, dental, vision & life insurance</div></div>
+    <div class="tile" onclick="openDetail('legal')"><div class="tile-icon">&#128272;</div><div class="tile-title">Legal Defense</div><div class="tile-desc">Representation & defense fund</div></div>
+    <div class="tile" onclick="openDetail('wellness')"><div class="tile-icon">&#127891;</div><div class="tile-title">Wellness</div><div class="tile-desc">Peer support & mental health</div></div>
+    <div class="tile" onclick="openDetail('forms')"><div class="tile-icon">&#128196;</div><div class="tile-title">Forms & Docs</div><div class="tile-desc">Contracts, forms & downloads</div></div>
+    <div class="tile" onclick="scrollTo('#events')"><div class="tile-icon">&#128197;</div><div class="tile-title">Events</div><div class="tile-desc">Upcoming meetings & social events</div></div>
+    <div class="tile" onclick="scrollTo('#store')"><div class="tile-icon">&#128176;</div><div class="tile-title">DSA Store</div><div class="tile-desc">Official merch & apparel</div></div>
+    <div class="tile" onclick="openDetail('newsletters')"><div class="tile-icon">&#128240;</div><div class="tile-title">Newsletters</div><div class="tile-desc">Monthly publications & minutes</div></div>
+    <div class="tile" onclick="openDetail('pac')"><div class="tile-icon">&#127937;</div><div class="tile-title">Political Action</div><div class="tile-desc">PAC updates & endorsements</div></div>
+  </div>
+</div>
+
+<!-- Detail panels (expand inline below tiles — zero clicks to a new page) -->
+<div class="detail-panel" id="dp-benefits"><div class="dp-card">
+  <button class="dp-close" onclick="closeDetail('benefits')">&times;</button>
+  <h3>Benefits & Insurance</h3>
+  <p>DSA members and their families have access to comprehensive coverage negotiated at competitive group rates:</p>
+  <ul>
+    <li><strong>Medical:</strong> Multiple plan options through leading providers with low copays and broad network access across San Diego County.</li>
+    <li><strong>Dental:</strong> Delta Dental PPO and Premier plans. Preventive care covered at 100%; major services at 50-80%.</li>
+    <li><strong>Vision:</strong> VSP coverage for annual exams, frames, lenses, and contacts with low out-of-pocket costs.</li>
+    <li><strong>Life & Disability:</strong> Group term life insurance and short/long-term disability coverage included with membership.</li>
+    <li><strong>Supplemental:</strong> Optional additional life insurance, accident insurance, and critical illness policies available.</li>
+  </ul>
+  <p>Open enrollment is announced annually. Coverage changes can also be made during qualifying life events.</p>
+  <div class="dp-contact">Questions? Call (858) 486-9009 or email benefits@dsasd.org</div>
+</div></div>
+
+<div class="detail-panel" id="dp-legal"><div class="dp-card">
+  <button class="dp-close" onclick="closeDetail('legal')">&times;</button>
+  <h3>Legal Defense Fund</h3>
+  <p>The DSA Legal Defense Fund provides critical support when you need it most:</p>
+  <ul>
+    <li><strong>Administrative Investigations:</strong> Full representation during IA interviews and Skelly hearings.</li>
+    <li><strong>Critical Incidents:</strong> Immediate attorney response 24/7 for officer-involved shootings, use-of-force incidents, and in-custody deaths.</li>
+    <li><strong>Civil Litigation:</strong> Defense against lawsuits arising from the performance of your duties.</li>
+    <li><strong>Weingarten Rights:</strong> Your right to union representation at any investigatory interview that could lead to discipline.</li>
+    <li><strong>Coverage:</strong> Attorney fees, expert witnesses, court costs, and related expenses.</li>
+  </ul>
+  <div class="dp-contact">24/7 Legal Hotline: (858) 486-9009 &mdash; Call immediately if involved in a critical incident</div>
+</div></div>
+
+<div class="detail-panel" id="dp-wellness"><div class="dp-card">
+  <button class="dp-close" onclick="closeDetail('wellness')">&times;</button>
+  <h3>Wellness & Peer Support</h3>
+  <p>Your well-being matters. All services are <strong>completely confidential</strong>:</p>
+  <ul>
+    <li><strong>Peer Support Team:</strong> Trained deputy counselors available for confidential conversations.</li>
+    <li><strong>CISM Team:</strong> Critical Incident Stress Management debriefings after traumatic events.</li>
+    <li><strong>Mental Health Referrals:</strong> Licensed therapists experienced with law enforcement issues.</li>
+    <li><strong>Fitness Partnerships:</strong> Gym discounts and fitness facility access across San Diego County.</li>
+    <li><strong>Wellness Workshops:</strong> Regular stress management, sleep health, and resilience seminars.</li>
+    <li><strong>Family Support:</strong> Resources for spouses and families of law enforcement personnel.</li>
+    <li><strong>Substance Abuse:</strong> Confidential counseling and treatment referrals.</li>
+  </ul>
+  <div class="dp-contact">Wellness Coordinator: (858) 486-9009 ext. 3 &mdash; All inquiries are 100% confidential</div>
+</div></div>
+
+<div class="detail-panel" id="dp-forms"><div class="dp-card">
+  <button class="dp-close" onclick="closeDetail('forms')">&times;</button>
+  <h3>Forms & Documents</h3>
+  <p>Access important DSA documents and forms:</p>
+  <ul>
+    <li><strong>Membership Enrollment Form</strong> &mdash; New member registration and payroll deduction authorization</li>
+    <li><strong>Beneficiary Designation Form</strong> &mdash; Life insurance beneficiary updates</li>
+    <li><strong>Grievance Filing Form</strong> &mdash; Formal grievance submission per the MOU</li>
+    <li><strong>Current MOU (Memorandum of Understanding)</strong> &mdash; Full contract with the County of San Diego</li>
+    <li><strong>Board Meeting Minutes</strong> &mdash; Monthly meeting records and motions</li>
+    <li><strong>Insurance Plan Summaries</strong> &mdash; Coverage details for medical, dental, and vision</li>
+    <li><strong>Retirement Planning Guide</strong> &mdash; SDCERA pension information for deputies</li>
+  </ul>
+  <div class="dp-contact">Request forms: info@dsasd.org or visit DSA HQ at 13881 Danielson St, Poway</div>
+</div></div>
+
+<div class="detail-panel" id="dp-newsletters"><div class="dp-card">
+  <button class="dp-close" onclick="closeDetail('newsletters')">&times;</button>
+  <h3>Newsletters & Publications</h3>
+  <p>Stay informed with DSA communications:</p>
+  <ul>
+    <li><strong>Monthly Newsletter:</strong> DSA updates, member spotlights, benefit reminders, and legislative news.</li>
+    <li><strong>Board Meeting Minutes:</strong> Official records from monthly Board of Directors meetings.</li>
+    <li><strong>Annual Report:</strong> Year-in-review of DSA activities, financials, and accomplishments.</li>
+    <li><strong>Legislative Updates:</strong> Alerts on bills and policies affecting law enforcement in California.</li>
+  </ul>
+  <div class="dp-contact">Subscribe to email updates: info@dsasd.org</div>
+</div></div>
+
+<div class="detail-panel" id="dp-pac"><div class="dp-card">
+  <button class="dp-close" onclick="closeDetail('pac')">&times;</button>
+  <h3>Political Action Committee</h3>
+  <p>The DSA PAC advocates for the interests of San Diego County deputies:</p>
+  <ul>
+    <li><strong>Candidate Endorsements:</strong> Research-based endorsements for local, state, and federal elections that support law enforcement.</li>
+    <li><strong>Legislative Advocacy:</strong> Lobbying on bills affecting deputy working conditions, retirement, and safety.</li>
+    <li><strong>Voter Guides:</strong> Published before each election with DSA-endorsed candidates and ballot measures.</li>
+    <li><strong>PAC Contributions:</strong> Voluntary member contributions support political activities.</li>
+  </ul>
+  <div class="dp-contact">PAC inquiries: pac@dsasd.org</div>
+</div></div>
+
+<!-- NEWS -->
+<div class="section" id="news">
+  <div class="sec-head"><h2>Latest News</h2></div>
+  <div class="news-grid">
+    <div class="news-card"><span class="news-tag t-ann">Announcement</span><h3>2026 Contract Negotiations Update</h3><p>The DSA bargaining team has reached a tentative agreement with the county on wages, benefits, and working conditions for the next three years.</p><div class="news-date">March 15, 2026</div></div>
+    <div class="news-card"><span class="news-tag t-evt">Event</span><h3>Annual DSA Family Picnic</h3><p>Join us at Poway Community Park on April 12th. Food, games, and fellowship for all DSA members and families.</p><div class="news-date">March 10, 2026</div></div>
+    <div class="news-card"><span class="news-tag t-ben">Benefit</span><h3>New Dental Plan Options</h3><p>Expanded Delta Dental coverage now available. Open enrollment begins April 1st with improved major services rates.</p><div class="news-date">March 5, 2026</div></div>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<div class="section" id="events">
+  <div class="sec-head"><h2>Upcoming Events</h2></div>
+  <div class="ev-list">
+    <div class="ev"><div class="ev-date"><div class="m">APR</div><div class="d">02</div></div><div class="ev-info"><h4>Board of Directors Meeting</h4><p>DSA Headquarters, Poway &mdash; 6:00 PM</p></div><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
+    <div class="ev"><div class="ev-date"><div class="m">APR</div><div class="d">12</div></div><div class="ev-info"><h4>Annual Family Picnic</h4><p>Poway Community Park &mdash; 11:00 AM</p></div><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
+    <div class="ev"><div class="ev-date"><div class="m">APR</div><div class="d">18</div></div><div class="ev-info"><h4>Wellness Workshop: Stress Management</h4><p>Virtual Event &mdash; 2:00 PM</p></div><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
+    <div class="ev"><div class="ev-date"><div class="m">MAY</div><div class="d">01</div></div><div class="ev-info"><h4>Deputy of the Year Awards</h4><p>Hilton San Diego &mdash; 7:00 PM</p></div><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
+    <div class="ev"><div class="ev-date"><div class="m">MAY</div><div class="d">15</div></div><div class="ev-info"><h4>Charity Golf Tournament</h4><p>Maderas Golf Club &mdash; 8:00 AM</p></div><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
+    <div class="ev"><div class="ev-date"><div class="m">MAY</div><div class="d">22</div></div><div class="ev-info"><h4>Law Enforcement Memorial</h4><p>County Admin Center &mdash; 10:00 AM</p></div><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section" id="about">
+  <div class="sec-head"><h2>About the DSA</h2></div>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>Our Mission</h3>
+      <p>The Deputy Sheriffs' Association of San Diego County is the labor union representing all sworn personnel of the San Diego County Sheriff's Department. Founded in 1955, we negotiate contracts, provide legal defense, support political action, and deliver member benefits and wellness programs for over 4,229 members.</p>
+      <p style="margin-top:10px">As the exclusive collective bargaining unit, the DSA negotiates Memoranda of Understanding (MOUs) covering wages, benefits, working conditions, overtime, and retirement with the County of San Diego.</p>
+    </div>
+    <div class="about-card">
+      <h3>Stations We Cover</h3>
+      <ul>
+        <li>San Diego Central</li><li>Vista</li><li>Encinitas</li><li>Fallbrook</li>
+        <li>Imperial Beach</li><li>Lemon Grove</li><li>Pine Valley</li><li>Rancho San Diego</li>
+        <li>San Marcos</li><li>Santee</li><li>4S Ranch</li><li>Court Services</li>
+        <li>Detention Facilities (Vista, Central, East Mesa, George Bailey, Las Colinas)</li>
+      </ul>
+    </div>
+    <div class="about-card">
+      <h3>Leadership</h3>
+      <p>The DSA is governed by a Board of Directors elected by the membership. The Board meets monthly at DSA Headquarters in Poway to review operations, approve expenditures, and set policy direction.</p>
+      <p style="margin-top:8px">Shop stewards are assigned to each station and facility to provide frontline union representation and ensure contract compliance.</p>
+    </div>
+    <div class="about-card">
+      <h3>History</h3>
+      <p>Since 1955, the DSA has grown from a small association of deputies to one of the largest law enforcement labor organizations in California. Key milestones include establishing the Legal Defense Fund, negotiating landmark contracts, and expanding wellness and peer support services.</p>
     </div>
   </div>
+</div>
 
-  <!-- Upcoming Events -->
-  <h2 class="section-title">Upcoming Events</h2>
-  <div class="events-section">
-    <div class="events-list">
-      <div class="event-item">
-        <div class="event-date-box"><div class="month">APR</div><div class="day">02</div></div>
-        <div class="event-info"><h4>Board of Directors Meeting</h4><p>DSA Headquarters, Poway - 6:00 PM</p></div>
-        <button class="event-rsvp">RSVP</button>
-      </div>
-      <div class="event-item">
-        <div class="event-date-box"><div class="month">APR</div><div class="day">12</div></div>
-        <div class="event-info"><h4>Annual Family Picnic</h4><p>Poway Community Park - 11:00 AM</p></div>
-        <button class="event-rsvp">RSVP</button>
-      </div>
-      <div class="event-item">
-        <div class="event-date-box"><div class="month">APR</div><div class="day">18</div></div>
-        <div class="event-info"><h4>Wellness Workshop: Stress Management</h4><p>Virtual Event - 2:00 PM</p></div>
-        <button class="event-rsvp">RSVP</button>
-      </div>
-      <div class="event-item">
-        <div class="event-date-box"><div class="month">MAY</div><div class="day">01</div></div>
-        <div class="event-info"><h4>Deputy of the Year Awards</h4><p>Hilton San Diego - 7:00 PM</p></div>
-        <button class="event-rsvp">RSVP</button>
-      </div>
-    </div>
+<!-- STORE -->
+<div class="section" id="store">
+  <div class="sec-head"><h2>DSA Store</h2><p>Official merchandise &mdash; member discounts applied automatically</p></div>
+  <div class="store-grid">
+    <div class="store-item"><div class="si-icon">&#128085;</div><h4>Polo Shirt</h4><p>Embroidered DSA logo</p><div class="price">$35</div></div>
+    <div class="store-item"><div class="si-icon">&#129506;</div><h4>Baseball Cap</h4><p>Adjustable, navy blue</p><div class="price">$22</div></div>
+    <div class="store-item"><div class="si-icon">&#129689;</div><h4>Challenge Coin</h4><p>Collector's edition</p><div class="price">$15</div></div>
+    <div class="store-item"><div class="si-icon">&#128188;</div><h4>Duffel Bag</h4><p>DSA branded, heavy duty</p><div class="price">$45</div></div>
+    <div class="store-item"><div class="si-icon">&#9749;</div><h4>Travel Mug</h4><p>Stainless, 16oz</p><div class="price">$18</div></div>
+    <div class="store-item"><div class="si-icon">&#128737;</div><h4>Lapel Pin</h4><p>Gold DSA shield</p><div class="price">$12</div></div>
+    <div class="store-item"><div class="si-icon">&#127939;</div><h4>Workout Tee</h4><p>Moisture-wicking</p><div class="price">$28</div></div>
+    <div class="store-item"><div class="si-icon">&#128218;</div><h4>Patch Set</h4><p>Velcro-backed, set of 3</p><div class="price">$20</div></div>
   </div>
+  <p style="text-align:center;margin-top:20px;color:#475569;font-size:0.8rem">Also available at DSA HQ, 13881 Danielson St, Poway &mdash; Online orders ship within 5-7 business days</p>
+</div>
 
-  <!-- FAQ Section -->
-  <h2 class="section-title" id="faqSection">Frequently Asked Questions</h2>
-  <p class="section-subtitle">Find answers instantly or chat with us</p>
-  <div class="faq-section">
-    <input type="text" class="faq-search" placeholder="Search FAQs..." id="faqSearch">
-    <div class="faq-categories">
-      <div class="faq-cat active" data-cat="all">All</div>
-      <div class="faq-cat" data-cat="membership">Membership</div>
-      <div class="faq-cat" data-cat="benefits">Benefits</div>
-      <div class="faq-cat" data-cat="events">Events</div>
-      <div class="faq-cat" data-cat="legal">Legal</div>
-      <div class="faq-cat" data-cat="store">Store</div>
+<!-- FAQ -->
+<div class="section" id="faq">
+  <div class="sec-head"><h2>Frequently Asked Questions</h2><p>Search below or ask the AI chatbot (bottom right)</p></div>
+  <div class="faq-wrap">
+    <div class="faq-bar">
+      <input type="text" placeholder="Search FAQs..." id="faqSearch">
+      <div class="faq-tag on" data-c="all">All</div>
+      <div class="faq-tag" data-c="membership">Membership</div>
+      <div class="faq-tag" data-c="benefits">Benefits</div>
+      <div class="faq-tag" data-c="legal">Legal</div>
+      <div class="faq-tag" data-c="events">Events</div>
+      <div class="faq-tag" data-c="store">Store</div>
     </div>
     <div id="faqList">
-      <div class="faq-item" data-cat="membership">
-        <div class="faq-question" onclick="toggleFaq(this)"><span>How do I become a DSA member?</span><span class="toggle">+</span></div>
-        <div class="faq-answer">All sworn personnel of the San Diego County Sheriff's Department are eligible for DSA membership. Contact the DSA office at (858) 486-9009 or visit our headquarters at 13881 Danielson Street, Poway to complete your enrollment. Membership dues are automatically deducted from your paycheck.</div>
-      </div>
-      <div class="faq-item" data-cat="membership">
-        <div class="faq-question" onclick="toggleFaq(this)"><span>What are the membership dues?</span><span class="toggle">+</span></div>
-        <div class="faq-answer">DSA membership dues are set by the Board of Directors and are competitive with similar law enforcement unions. Dues cover legal defense, political representation, member benefits, and organizational operations. Contact the office for current rates.</div>
-      </div>
-      <div class="faq-item" data-cat="benefits">
-        <div class="faq-question" onclick="toggleFaq(this)"><span>What insurance benefits are available?</span><span class="toggle">+</span></div>
-        <div class="faq-answer">DSA members have access to group health insurance (medical, dental, vision), life insurance, disability insurance, and supplemental coverage options. We negotiate competitive rates with major providers to ensure comprehensive coverage for members and their families.</div>
-      </div>
-      <div class="faq-item" data-cat="benefits">
-        <div class="faq-question" onclick="toggleFaq(this)"><span>How does the wellness program work?</span><span class="toggle">+</span></div>
-        <div class="faq-answer">Our wellness program includes peer support counseling, mental health resources, fitness facility access, and stress management workshops. All services are confidential. Contact the Wellness Coordinator through the member portal or call the DSA office.</div>
-      </div>
-      <div class="faq-item" data-cat="legal">
-        <div class="faq-question" onclick="toggleFaq(this)"><span>What legal defense does DSA provide?</span><span class="toggle">+</span></div>
-        <div class="faq-answer">The DSA Legal Defense Fund provides legal representation for members facing administrative investigations, critical incidents, and civil litigation arising from the performance of their duties. Contact the DSA office immediately if you need legal assistance.</div>
-      </div>
-      <div class="faq-item" data-cat="events">
-        <div class="faq-question" onclick="toggleFaq(this)"><span>How do I RSVP for events?</span><span class="toggle">+</span></div>
-        <div class="faq-answer">You can RSVP for DSA events through the member portal, by calling the office, or by clicking the RSVP button next to any event on this page. Most events are open to members and their immediate families.</div>
-      </div>
-      <div class="faq-item" data-cat="store">
-        <div class="faq-question" onclick="toggleFaq(this)"><span>How do I purchase DSA merchandise?</span><span class="toggle">+</span></div>
-        <div class="faq-answer">Visit the DSA Store section on our website or stop by the DSA office in Poway. We carry official DSA apparel, accessories, and memorabilia. Online orders ship within 5-7 business days. Member discounts apply automatically.</div>
-      </div>
+      <div class="fq" data-c="membership"><div class="fq-q" onclick="tFaq(this)"><span>How do I become a DSA member?</span><span class="t">+</span></div><div class="fq-a">All sworn personnel of the San Diego County Sheriff's Department are eligible. Contact the DSA office at (858) 486-9009 or visit headquarters at 13881 Danielson Street, Poway. Dues are automatically deducted from your paycheck and benefits begin immediately.</div></div>
+      <div class="fq" data-c="membership"><div class="fq-q" onclick="tFaq(this)"><span>What do membership dues cover?</span><span class="t">+</span></div><div class="fq-a">Dues cover legal defense, political representation, member benefits, organizational operations, and access to all DSA programs. Rates are set by the Board of Directors. Contact the office for current rates.</div></div>
+      <div class="fq" data-c="membership"><div class="fq-q" onclick="tFaq(this)"><span>What are Weingarten Rights?</span><span class="t">+</span></div><div class="fq-a">You have the right to request union representation at any investigatory interview that could lead to discipline. If management denies your request, the interview must stop. Contact a shop steward or the DSA office immediately.</div></div>
+      <div class="fq" data-c="benefits"><div class="fq-q" onclick="tFaq(this)"><span>What insurance benefits are available?</span><span class="t">+</span></div><div class="fq-a">Members have access to group health insurance (medical, dental, vision), life insurance, disability insurance, and supplemental coverage. We negotiate competitive rates with major providers. Coverage extends to you and your family.</div></div>
+      <div class="fq" data-c="benefits"><div class="fq-q" onclick="tFaq(this)"><span>When is open enrollment?</span><span class="t">+</span></div><div class="fq-a">Open enrollment is announced annually, typically in the fall. You can also make changes during qualifying life events such as marriage, birth of a child, or change in spouse's coverage.</div></div>
+      <div class="fq" data-c="legal"><div class="fq-q" onclick="tFaq(this)"><span>What legal defense does DSA provide?</span><span class="t">+</span></div><div class="fq-a">The Legal Defense Fund covers administrative investigations, IA interviews, Skelly hearings, critical incidents (24/7 response), and civil litigation from on-duty actions. Attorney fees, expert witnesses, and court costs are covered.</div></div>
+      <div class="fq" data-c="legal"><div class="fq-q" onclick="tFaq(this)"><span>What should I do after a critical incident?</span><span class="t">+</span></div><div class="fq-a">Call the DSA 24/7 legal hotline at (858) 486-9009 immediately. Do not give a detailed statement until your attorney arrives. You have the right to representation. The CISM team is also available for post-incident support.</div></div>
+      <div class="fq" data-c="events"><div class="fq-q" onclick="tFaq(this)"><span>How do I RSVP for events?</span><span class="t">+</span></div><div class="fq-a">Click the RSVP button next to any event on this page, call the office, or email info@dsasd.org. Most events are open to members and their immediate families.</div></div>
+      <div class="fq" data-c="store"><div class="fq-q" onclick="tFaq(this)"><span>How do I buy DSA merchandise?</span><span class="t">+</span></div><div class="fq-a">Browse the Store section above or visit DSA HQ in Poway. Online orders ship within 5-7 business days. Member discounts are applied automatically at checkout.</div></div>
     </div>
   </div>
+</div>
 
-  <!-- Admin Panel (hidden by default) -->
-  <h2 class="section-title admin-panel" id="adminTitle">All Registered Members</h2>
-  <div class="admin-panel" id="adminPanel">
-    <table class="admin-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Username</th>
-          <th>Sheriff ID</th>
-          <th>Rank</th>
-          <th>Station</th>
-          <th>Email</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody id="adminTableBody">
-      </tbody>
-    </table>
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <div class="sec-head"><h2>Contact Us</h2></div>
+  <div class="contact-row">
+    <div class="c-card"><div class="c-icon">&#128205;</div><h4>Visit Us</h4><p>13881 Danielson Street<br>Poway, CA 92064</p><p style="margin-top:6px;font-size:0.75rem;color:#475569">Mon-Fri 8:00 AM - 5:00 PM</p></div>
+    <div class="c-card"><div class="c-icon">&#128222;</div><h4>Call Us</h4><p><a href="tel:+18584869009">(858) 486-9009</a></p><p style="margin-top:4px;font-size:0.75rem;color:#475569">24/7 Legal Hotline available</p></div>
+    <div class="c-card"><div class="c-icon">&#128231;</div><h4>Email Us</h4><p><a href="mailto:info@dsasd.org">info@dsasd.org</a></p><p style="margin-top:4px"><a href="mailto:benefits@dsasd.org" style="font-size:0.78rem">benefits@dsasd.org</a></p></div>
   </div>
+</div>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-col">
-        <h4>DSA San Diego</h4>
-        <p>13881 Danielson Street</p>
-        <p>Poway, CA 92064</p>
-        <p>(858) 486-9009</p>
-        <p>info@dsasd.org</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <a href="#">Benefits</a>
-        <a href="#">Events</a>
-        <a href="#">Store</a>
-        <a href="#">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <a href="#">Legal Defense</a>
-        <a href="#">Wellness</a>
-        <a href="#">Newsletters</a>
-        <a href="#">Meeting Minutes</a>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-        <a href="#">Instagram</a>
-        <a href="#">YouTube</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2026 Deputy Sheriffs' Association of San Diego County. All rights reserved.
-    </div>
-  </footer>
+<!-- ADMIN -->
+<div class="section admin-section" id="adminSection">
+  <div class="sec-head"><h2>All Registered Members</h2></div>
+  <table class="a-table"><thead><tr><th>Name</th><th>Username</th><th>Badge</th><th>Rank</th><th>Station</th><th>Email</th><th>Status</th></tr></thead><tbody id="adminBody"></tbody></table>
+</div>
 
-  <!-- Chatbot -->
-  <button class="chatbot-trigger" id="chatbotTrigger" onclick="toggleChatbot()">&#128172;</button>
-  <div class="chatbot-window" id="chatbotWindow">
-    <div class="chatbot-header">
-      <h3>DSA FAQ Assistant</h3>
-      <button class="chatbot-close" onclick="toggleChatbot()">&times;</button>
-    </div>
-    <div class="chatbot-messages" id="chatMessages">
-      <div class="chat-msg bot"><div class="chat-bubble">Hi! I'm the DSA FAQ Assistant. Ask me anything about membership, benefits, events, legal defense, or the DSA store. How can I help you today?</div></div>
-    </div>
-    <div class="chatbot-input-area">
-      <input type="text" class="chatbot-input" id="chatInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter')sendChat()">
-      <button class="chatbot-send" onclick="sendChat()">Send</button>
-    </div>
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-col"><h4>Deputy Sheriffs' Association</h4><p>13881 Danielson Street, Poway, CA 92064</p><p>(858) 486-9009 &middot; info@dsasd.org</p><p style="margin-top:8px;color:#1e3352">&copy; 2026 DSA San Diego County</p></div>
+    <div class="ft-col"><h4>Navigate</h4><a href="#dashboard">Resources</a><a href="#news">News</a><a href="#events">Events</a><a href="#store">Store</a><a href="#faq">FAQ</a></div>
+    <div class="ft-col"><h4>Support</h4><a href="#contact">Contact</a><a href="javascript:void(0)" onclick="openDetail('legal')">Legal Defense</a><a href="javascript:void(0)" onclick="openDetail('wellness')">Wellness</a><a href="javascript:void(0)" onclick="openDetail('forms')">Forms</a></div>
   </div>
+</footer>
 
-  <!-- Login/Signup Modal -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-      <h2 id="modalTitle">Member Login</h2>
-      <p class="modal-subtitle" id="modalSubtitle">Access your DSA member portal</p>
+<!-- CHATBOT -->
+<button class="cb-trigger" onclick="document.getElementById('cbWin').classList.toggle('open')">&#128172;</button>
+<div class="cb-win" id="cbWin">
+  <div class="cb-head"><h3>DSA Assistant (AI)</h3><button class="cb-x" onclick="document.getElementById('cbWin').classList.remove('open')">&times;</button></div>
+  <div class="cb-msgs" id="cbMsgs"><div class="cm bot"><div class="cb">Hi! I'm the DSA FAQ Assistant powered by AI. Ask me anything about membership, benefits, legal defense, events, or the store.</div></div></div>
+  <div class="cb-input"><input id="cbIn" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendChat()"><button id="cbSend" onclick="sendChat()">Send</button></div>
+</div>
 
-      <div class="modal-tabs">
-        <div class="modal-tab active" id="tabLogin" onclick="switchTab('login')">Log In</div>
-        <div class="modal-tab" id="tabSignup" onclick="switchTab('signup')">Sign Up</div>
-      </div>
-
-      <!-- Login Form -->
-      <form class="modal-form" id="loginForm" onsubmit="sheriffLogin(event)">
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text" id="loginUid" placeholder="Enter your username" required>
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" id="loginPassword" placeholder="Enter your password" required>
-        </div>
-        <button type="submit" class="modal-submit">Log In</button>
-        <p class="modal-error" id="loginError"></p>
-      </form>
-
-      <!-- Signup Form -->
-      <form class="modal-form" id="signupFormSheriff" onsubmit="sheriffSignup(event)" style="display:none;">
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" id="signupName" placeholder="e.g., John Smith" required>
-        </div>
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text" id="signupUidSheriff" placeholder="Choose a username" required>
-        </div>
-        <div class="form-group">
-          <label>Sheriff ID / Badge Number</label>
-          <input type="text" id="signupSheriffId" placeholder="e.g., SD-1234" required>
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="signupEmailSheriff" placeholder="your@email.com">
-        </div>
-        <div class="form-group">
-          <label>Rank</label>
-          <select id="signupRank">
-            <option value="Deputy">Deputy</option>
-            <option value="Corporal">Corporal</option>
-            <option value="Sergeant">Sergeant</option>
-            <option value="Lieutenant">Lieutenant</option>
-            <option value="Captain">Captain</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Station / Location</label>
-          <select id="signupStation">
-            <option value="San Diego Central">San Diego Central</option>
-            <option value="Vista Station">Vista Station</option>
-            <option value="Encinitas Station">Encinitas Station</option>
-            <option value="Fallbrook Station">Fallbrook Station</option>
-            <option value="Imperial Beach Station">Imperial Beach Station</option>
-            <option value="Lemon Grove Station">Lemon Grove Station</option>
-            <option value="Pine Valley Station">Pine Valley Station</option>
-            <option value="Rancho San Diego Station">Rancho San Diego Station</option>
-            <option value="San Marcos Station">San Marcos Station</option>
-            <option value="Santee Station">Santee Station</option>
-            <option value="4S Ranch Station">4S Ranch Station</option>
-            <option value="DSA Headquarters - Poway">DSA Headquarters - Poway</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" id="signupPhone" placeholder="(xxx) xxx-xxxx">
-        </div>
-        <div class="form-group">
-          <label>Password (min 8 characters)</label>
-          <input type="password" id="signupPasswordSheriff" placeholder="Create a password" required minlength="8">
-        </div>
-        <button type="submit" class="modal-submit">Create Account</button>
-        <p class="modal-error" id="signupError"></p>
-      </form>
-    </div>
+<!-- LOGIN MODAL -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()">&times;</button>
+    <h2 id="mTitle">Member Login</h2>
+    <p class="sub" id="mSub">Access your DSA portal</p>
+    <div class="mtabs"><div class="mtab on" id="tLog" onclick="mTab('login')">Log In</div><div class="mtab" id="tSign" onclick="mTab('signup')">Sign Up</div></div>
+    <form id="fLogin" onsubmit="doLogin(event)">
+      <div class="fg"><label>Username</label><input id="lUid" placeholder="Enter username" required></div>
+      <div class="fg"><label>Password</label><input type="password" id="lPw" placeholder="Enter password" required></div>
+      <button type="submit" class="modal-submit">Log In</button>
+      <p class="modal-err" id="lErr"></p>
+    </form>
+    <form id="fSign" onsubmit="doSignup(event)" style="display:none">
+      <div class="fg"><label>Full Name</label><input id="sName" placeholder="John Smith" required></div>
+      <div class="fg"><label>Username</label><input id="sUid" placeholder="Choose a username" required></div>
+      <div class="fg"><label>Badge / Sheriff ID</label><input id="sSid" placeholder="SD-1234" required></div>
+      <div class="fg"><label>Email</label><input type="email" id="sEmail" placeholder="your@email.com"></div>
+      <div class="fg"><label>Rank</label><select id="sRank"><option>Deputy</option><option>Corporal</option><option>Sergeant</option><option>Lieutenant</option><option>Captain</option></select></div>
+      <div class="fg"><label>Station</label><select id="sStation"><option>San Diego Central</option><option>Vista Station</option><option>Encinitas Station</option><option>Fallbrook Station</option><option>Imperial Beach Station</option><option>Lemon Grove Station</option><option>Pine Valley Station</option><option>Rancho San Diego Station</option><option>San Marcos Station</option><option>Santee Station</option><option>4S Ranch Station</option><option>DSA Headquarters - Poway</option></select></div>
+      <div class="fg"><label>Phone</label><input type="tel" id="sPhone" placeholder="(xxx) xxx-xxxx"></div>
+      <div class="fg"><label>Password (min 8 chars)</label><input type="password" id="sPw" placeholder="Create password" required minlength="8"></div>
+      <button type="submit" class="modal-submit">Create Account</button>
+      <p class="modal-err" id="sErr"></p>
+    </form>
   </div>
+</div>
 
-  <script>
-    // ===== CONFIG =====
-    const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-      ? 'http://localhost:8587'
-      : 'https://flask.opencodingsociety.com';
+<script>
+const API = (location.hostname==='localhost'||location.hostname==='127.0.0.1') ? 'http://localhost:8587' : 'https://flask.opencodingsociety.com';
+let user = null;
 
-    let currentUser = null;
+// Smooth scroll
+function scrollTo(sel) { document.querySelector(sel)?.scrollIntoView({behavior:'smooth'}); }
 
-    // ===== MODAL =====
-    function openModal(tab) {
-      document.getElementById('modalOverlay').classList.add('active');
-      switchTab(tab || 'login');
-    }
-    function closeModal() {
-      document.getElementById('modalOverlay').classList.remove('active');
-      document.getElementById('loginError').style.display = 'none';
-      document.getElementById('signupError').style.display = 'none';
-    }
-    function switchTab(tab) {
-      document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
-      document.getElementById('tabSignup').classList.toggle('active', tab === 'signup');
-      document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
-      document.getElementById('signupFormSheriff').style.display = tab === 'signup' ? 'block' : 'none';
-      document.getElementById('modalTitle').textContent = tab === 'login' ? 'Member Login' : 'Create Account';
-      document.getElementById('modalSubtitle').textContent = tab === 'login' ? 'Access your DSA member portal' : 'Register as a DSA member';
-    }
+// Detail panels
+function openDetail(id) {
+  document.querySelectorAll('.detail-panel').forEach(p => p.classList.remove('open'));
+  const panel = document.getElementById('dp-'+id);
+  if (panel) { panel.classList.add('open'); panel.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+}
+function closeDetail(id) { document.getElementById('dp-'+id)?.classList.remove('open'); }
 
-    // ===== LOGIN =====
-    function sheriffLogin(e) {
-      e.preventDefault();
-      const uid = document.getElementById('loginUid').value;
-      const password = document.getElementById('loginPassword').value;
+// RSVP
+function rsvp(btn) { btn.textContent = '✓ RSVP\'d'; btn.classList.add('done'); }
 
-      fetch(`${API_BASE}/api/sheriff/authenticate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({ uid, password })
-      })
-      .then(r => {
-        if (!r.ok) return r.json().then(d => { throw new Error(d.message || 'Login failed'); });
-        return r.json();
-      })
-      .then(data => {
-        currentUser = data.user;
-        closeModal();
-        updateUIForUser();
-      })
-      .catch(err => {
-        const el = document.getElementById('loginError');
-        el.textContent = err.message;
-        el.style.display = 'block';
-      });
-    }
+// FAQ
+function tFaq(el) { el.classList.toggle('open'); el.nextElementSibling.classList.toggle('open'); }
+document.querySelectorAll('.faq-tag').forEach(t => t.addEventListener('click', function() {
+  document.querySelectorAll('.faq-tag').forEach(x => x.classList.remove('on'));
+  this.classList.add('on');
+  const c = this.dataset.c;
+  document.querySelectorAll('.fq').forEach(f => f.style.display = (c==='all'||f.dataset.c===c) ? '' : 'none');
+}));
+document.getElementById('faqSearch').addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('.fq').forEach(f => f.style.display = f.textContent.toLowerCase().includes(q) ? '' : 'none');
+});
 
-    // ===== SIGNUP =====
-    function sheriffSignup(e) {
-      e.preventDefault();
-      const body = {
-        name: document.getElementById('signupName').value,
-        uid: document.getElementById('signupUidSheriff').value,
-        sheriff_id: document.getElementById('signupSheriffId').value,
-        email: document.getElementById('signupEmailSheriff').value,
-        rank: document.getElementById('signupRank').value,
-        station: document.getElementById('signupStation').value,
-        phone: document.getElementById('signupPhone').value,
-        password: document.getElementById('signupPasswordSheriff').value,
-      };
+// Search (scrolls to section)
+const searchMap = [
+  {label:'Benefits & Insurance',target:'#dashboard',detail:'benefits'},
+  {label:'Legal Defense',target:'#dashboard',detail:'legal'},
+  {label:'Wellness Programs',target:'#dashboard',detail:'wellness'},
+  {label:'Forms & Documents',target:'#dashboard',detail:'forms'},
+  {label:'Newsletters',target:'#dashboard',detail:'newsletters'},
+  {label:'Political Action',target:'#dashboard',detail:'pac'},
+  {label:'Events Calendar',target:'#events'},
+  {label:'DSA Store',target:'#store'},
+  {label:'FAQ',target:'#faq'},
+  {label:'Contact Us',target:'#contact'},
+  {label:'About DSA',target:'#about'},
+  {label:'Latest News',target:'#news'},
+  {label:'Membership',target:'#faq'},
+];
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim(), drop = document.getElementById('searchDrop');
+  if (q.length < 2) { drop.classList.remove('open'); return; }
+  const hits = searchMap.filter(s => s.label.toLowerCase().includes(q));
+  if (!hits.length) { drop.classList.remove('open'); return; }
+  drop.innerHTML = hits.map(h => `<div class="search-item" data-target="${h.target}" data-detail="${h.detail||''}">${h.label}</div>`).join('');
+  drop.classList.add('open');
+  drop.querySelectorAll('.search-item').forEach(it => it.addEventListener('click', function() {
+    scrollTo(this.dataset.target);
+    if (this.dataset.detail) setTimeout(() => openDetail(this.dataset.detail), 400);
+    drop.classList.remove('open');
+    document.getElementById('searchInput').value = '';
+  }));
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-box')) document.getElementById('searchDrop').classList.remove('open');
+  if (!e.target.closest('.user-area')) document.getElementById('userPanel')?.classList.remove('open');
+});
 
-      fetch(`${API_BASE}/api/sheriff/user`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify(body)
-      })
-      .then(r => {
-        if (!r.ok) return r.json().then(d => { throw new Error(d.message || 'Signup failed'); });
-        return r.json();
-      })
-      .then(() => {
-        switchTab('login');
-        document.getElementById('loginUid').value = body.uid;
-        alert('Account created! Please log in.');
-      })
-      .catch(err => {
-        const el = document.getElementById('signupError');
-        el.textContent = err.message;
-        el.style.display = 'block';
-      });
-    }
+// Highlight active nav on scroll
+const sections = ['dashboard','news','events','about','store','faq','contact'];
+window.addEventListener('scroll', () => {
+  const y = window.scrollY + 120;
+  let active = '';
+  sections.forEach(s => { const el = document.getElementById(s); if (el && el.offsetTop <= y) active = s; });
+  document.querySelectorAll('.nav-link').forEach(l => {
+    l.classList.toggle('active', l.getAttribute('onclick')?.includes(active));
+  });
+});
 
-    // ===== LOGOUT =====
-    function logoutSheriff() {
-      fetch(`${API_BASE}/api/sheriff/authenticate`, {
-        method: 'DELETE',
-        credentials: 'include'
-      }).finally(() => {
-        currentUser = null;
-        updateUIForUser();
-        document.getElementById('userMenu').classList.remove('active');
-      });
-    }
+// Modal
+function openModal(tab) { document.getElementById('modalBg').classList.add('open'); mTab(tab||'login'); }
+function closeModal() { document.getElementById('modalBg').classList.remove('open'); document.getElementById('lErr').style.display='none'; document.getElementById('sErr').style.display='none'; }
+function mTab(t) {
+  document.getElementById('tLog').classList.toggle('on',t==='login');
+  document.getElementById('tSign').classList.toggle('on',t==='signup');
+  document.getElementById('fLogin').style.display = t==='login'?'block':'none';
+  document.getElementById('fSign').style.display = t==='signup'?'block':'none';
+  document.getElementById('mTitle').textContent = t==='login'?'Member Login':'Create Account';
+  document.getElementById('mSub').textContent = t==='login'?'Access your DSA portal':'Register as a DSA member';
+}
 
-    // ===== UI UPDATE =====
-    function updateUIForUser() {
-      const authBtns = document.getElementById('authButtons');
-      const userDrop = document.getElementById('userDropdown');
-      if (currentUser) {
-        authBtns.style.display = 'none';
-        userDrop.classList.add('active');
-        document.getElementById('userName').textContent = currentUser.name.split(' ')[0];
-        document.getElementById('menuUserName').textContent = currentUser.name;
-        document.getElementById('menuBadge').textContent = 'Badge: ' + currentUser.sheriff_id;
-        document.getElementById('menuRank').textContent = 'Rank: ' + currentUser.rank;
-        document.getElementById('menuStation').textContent = 'Station: ' + currentUser.station;
-        if (currentUser.role === 'Admin') {
-          document.getElementById('adminPanelBtn').style.display = 'block';
-        }
-      } else {
-        authBtns.style.display = 'flex';
-        userDrop.classList.remove('active');
-        document.getElementById('adminPanel').classList.remove('active');
-        document.getElementById('adminTitle').classList.remove('active');
-        document.getElementById('adminPanelBtn').style.display = 'none';
-      }
-    }
+// Auth
+function doLogin(e) {
+  e.preventDefault();
+  fetch(`${API}/api/sheriff/authenticate`,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({uid:document.getElementById('lUid').value,password:document.getElementById('lPw').value})})
+  .then(r=>{if(!r.ok) return r.json().then(d=>{throw new Error(d.message||'Login failed')}); return r.json()})
+  .then(d=>{user=d.user; closeModal(); updateUI();})
+  .catch(err=>{const el=document.getElementById('lErr'); el.textContent=err.message; el.style.display='block';});
+}
+function doSignup(e) {
+  e.preventDefault();
+  const body={name:document.getElementById('sName').value,uid:document.getElementById('sUid').value,sheriff_id:document.getElementById('sSid').value,email:document.getElementById('sEmail').value,rank:document.getElementById('sRank').value,station:document.getElementById('sStation').value,phone:document.getElementById('sPhone').value,password:document.getElementById('sPw').value};
+  fetch(`${API}/api/sheriff/user`,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify(body)})
+  .then(r=>{if(!r.ok) return r.json().then(d=>{throw new Error(d.message||'Signup failed')}); return r.json()})
+  .then(()=>{mTab('login'); document.getElementById('lUid').value=body.uid; alert('Account created! Please log in.');})
+  .catch(err=>{const el=document.getElementById('sErr'); el.textContent=err.message; el.style.display='block';});
+}
+function logout() {
+  fetch(`${API}/api/sheriff/authenticate`,{method:'DELETE',credentials:'include'}).finally(()=>{user=null;updateUI();document.getElementById('userPanel').classList.remove('open');});
+}
+function updateUI() {
+  document.getElementById('authBtns').style.display = user?'none':'flex';
+  const ua = document.getElementById('userArea');
+  if(user){ua.classList.add('active');document.getElementById('uName').textContent=user.name.split(' ')[0];document.getElementById('upName').textContent=user.name;document.getElementById('upBadge').textContent='Badge: '+user.sheriff_id;document.getElementById('upRank').textContent='Rank: '+user.rank;document.getElementById('upStation').textContent='Station: '+user.station;document.getElementById('adminBtn').style.display=user.role==='Admin'?'block':'none';}
+  else{ua.classList.remove('active');document.getElementById('adminSection').classList.remove('open');}
+}
+function toggleAdmin(){const s=document.getElementById('adminSection');s.classList.toggle('open');if(s.classList.contains('open'))loadAdmin();document.getElementById('userPanel').classList.remove('open');if(s.classList.contains('open'))setTimeout(()=>s.scrollIntoView({behavior:'smooth'}),100);}
+function loadAdmin(){fetch(`${API}/api/sheriff/user`,{credentials:'include'}).then(r=>r.json()).then(users=>{document.getElementById('adminBody').innerHTML=users.map(u=>`<tr><td>${u.name}</td><td>${u.uid}</td><td>${u.sheriff_id}</td><td>${u.rank}</td><td>${u.station}</td><td>${u.email}</td><td><span class="badge-s badge-active">${u.status}</span></td></tr>`).join('');}).catch(e=>console.error(e));}
 
-    function toggleUserMenu() {
-      document.getElementById('userMenu').classList.toggle('active');
-    }
+// Chatbot (AI)
+let chatHist=[];
+function sendChat(){
+  const inp=document.getElementById('cbIn'),msg=inp.value.trim();if(!msg)return;inp.value='';
+  addMsg(msg,'user'); chatHist.push({role:'user',content:msg});
+  const tid=showTyping(),btn=document.getElementById('cbSend');btn.disabled=true;btn.textContent='...';
+  fetch(`${API}/api/sheriff/chat`,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({message:msg,history:chatHist.slice(-10)})})
+  .then(r=>{if(!r.ok)return r.json().then(d=>{throw new Error(d.error||'error')});return r.json()})
+  .then(d=>{rmTyping(tid);addMsg(d.reply,'bot');chatHist.push({role:'assistant',content:d.reply});})
+  .catch(()=>{rmTyping(tid);addMsg("Sorry, I can't connect right now. Call (858) 486-9009 or email info@dsasd.org.",'bot');})
+  .finally(()=>{btn.disabled=false;btn.textContent='Send';});
+}
+function showTyping(){const c=document.getElementById('cbMsgs'),d=document.createElement('div'),id='t'+Date.now();d.id=id;d.className='cm bot';d.innerHTML='<div class="cb typing-dots"><span></span><span></span><span></span></div>';c.appendChild(d);c.scrollTop=c.scrollHeight;return id;}
+function rmTyping(id){document.getElementById(id)?.remove();}
+function addMsg(t,s){const c=document.getElementById('cbMsgs'),d=document.createElement('div');d.className='cm '+s;const safe=t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');d.innerHTML='<div class="cb">'+safe+'</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}
 
-    // ===== ADMIN PANEL =====
-    function toggleAdminPanel() {
-      const panel = document.getElementById('adminPanel');
-      const title = document.getElementById('adminTitle');
-      panel.classList.toggle('active');
-      title.classList.toggle('active');
-      if (panel.classList.contains('active')) loadAdminData();
-      document.getElementById('userMenu').classList.remove('active');
-    }
-
-    function loadAdminData() {
-      fetch(`${API_BASE}/api/sheriff/user`, {
-        credentials: 'include'
-      })
-      .then(r => r.json())
-      .then(users => {
-        const tbody = document.getElementById('adminTableBody');
-        tbody.innerHTML = '';
-        users.forEach(u => {
-          const statusClass = u.status === 'Active' ? 'status-active' : 'status-retired';
-          tbody.innerHTML += `<tr>
-            <td>${u.name}</td>
-            <td>${u.uid}</td>
-            <td>${u.sheriff_id}</td>
-            <td>${u.rank}</td>
-            <td>${u.station}</td>
-            <td>${u.email}</td>
-            <td><span class="status-badge ${statusClass}">${u.status}</span></td>
-          </tr>`;
-        });
-      })
-      .catch(err => console.error('Admin data error:', err));
-    }
-
-    // ===== SEARCH =====
-    const searchData = [
-      'Benefits & Insurance', 'Legal Defense Fund', 'Wellness Programs',
-      'Events Calendar', 'DSA Store', 'Board Meeting Minutes',
-      'Newsletters', 'Political Action Committee', 'Membership Enrollment',
-      'Contract Information', 'Dental Plan', 'FAQ', 'Contact Us'
-    ];
-
-    document.getElementById('siteSearch').addEventListener('input', function() {
-      const q = this.value.toLowerCase().trim();
-      const results = document.getElementById('searchResults');
-      if (q.length < 2) { results.classList.remove('active'); return; }
-      const matches = searchData.filter(item => item.toLowerCase().includes(q));
-      if (matches.length === 0) { results.classList.remove('active'); return; }
-      results.innerHTML = matches.map(m => `<div class="search-result-item">${m}</div>`).join('');
-      results.classList.add('active');
-    });
-
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.search-container')) document.getElementById('searchResults').classList.remove('active');
-      if (!e.target.closest('.user-dropdown')) document.getElementById('userMenu').classList.remove('active');
-    });
-
-    // ===== FAQ =====
-    function toggleFaq(el) {
-      el.classList.toggle('open');
-      el.nextElementSibling.classList.toggle('open');
-    }
-
-    document.querySelectorAll('.faq-cat').forEach(cat => {
-      cat.addEventListener('click', function() {
-        document.querySelectorAll('.faq-cat').forEach(c => c.classList.remove('active'));
-        this.classList.add('active');
-        const category = this.dataset.cat;
-        document.querySelectorAll('.faq-item').forEach(item => {
-          item.style.display = (category === 'all' || item.dataset.cat === category) ? 'block' : 'none';
-        });
-      });
-    });
-
-    document.getElementById('faqSearch').addEventListener('input', function() {
-      const q = this.value.toLowerCase();
-      document.querySelectorAll('.faq-item').forEach(item => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(q) ? 'block' : 'none';
-      });
-    });
-
-    function scrollToFAQ() {
-      document.getElementById('faqSection').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // ===== CHATBOT (AI-powered via Claude API) =====
-    let chatHistory = []; // conversation history for context
-
-    function toggleChatbot() {
-      document.getElementById('chatbotWindow').classList.toggle('open');
-    }
-
-    function sendChat() {
-      const input = document.getElementById('chatInput');
-      const msg = input.value.trim();
-      if (!msg) return;
-      input.value = '';
-
-      addChatMessage(msg, 'user');
-      chatHistory.push({ role: 'user', content: msg });
-
-      // Show typing indicator
-      const typingId = showTypingIndicator();
-
-      // Disable send button while waiting
-      const sendBtn = document.querySelector('.chatbot-send');
-      sendBtn.disabled = true;
-      sendBtn.textContent = '...';
-
-      fetch(`${API_BASE}/api/sheriff/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({
-          message: msg,
-          history: chatHistory.slice(-10) // send last 10 messages for context
-        })
-      })
-      .then(r => {
-        if (!r.ok) return r.json().then(d => { throw new Error(d.error || 'Chat service unavailable'); });
-        return r.json();
-      })
-      .then(data => {
-        removeTypingIndicator(typingId);
-        const reply = data.reply;
-        addChatMessage(reply, 'bot');
-        chatHistory.push({ role: 'assistant', content: reply });
-      })
-      .catch(err => {
-        removeTypingIndicator(typingId);
-        addChatMessage("Sorry, I'm having trouble connecting right now. You can reach the DSA office directly at (858) 486-9009 or info@dsasd.org.", 'bot');
-        console.error('Chat error:', err);
-      })
-      .finally(() => {
-        sendBtn.disabled = false;
-        sendBtn.textContent = 'Send';
-      });
-    }
-
-    function showTypingIndicator() {
-      const container = document.getElementById('chatMessages');
-      const div = document.createElement('div');
-      const id = 'typing-' + Date.now();
-      div.id = id;
-      div.className = 'chat-msg bot';
-      div.innerHTML = '<div class="chat-bubble typing-indicator"><span></span><span></span><span></span></div>';
-      container.appendChild(div);
-      container.scrollTop = container.scrollHeight;
-      return id;
-    }
-
-    function removeTypingIndicator(id) {
-      const el = document.getElementById(id);
-      if (el) el.remove();
-    }
-
-    function addChatMessage(text, sender) {
-      const container = document.getElementById('chatMessages');
-      const div = document.createElement('div');
-      div.className = 'chat-msg ' + sender;
-      // Sanitize text to prevent XSS
-      const safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
-      div.innerHTML = '<div class="chat-bubble">' + safe + '</div>';
-      container.appendChild(div);
-      container.scrollTop = container.scrollHeight;
-    }
-
-    // ===== CHECK AUTH ON LOAD =====
-    (function checkAuth() {
-      fetch(`${API_BASE}/api/sheriff/id`, { credentials: 'include' })
-        .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-        .then(data => { currentUser = data; updateUIForUser(); })
-        .catch(() => {});
-    })();
-  </script>
-
+// Check auth on load
+fetch(`${API}/api/sheriff/id`,{credentials:'include'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{user=d;updateUI()}).catch(()=>{});
+</script>
 </body>
 </html>
