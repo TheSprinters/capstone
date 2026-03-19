@@ -314,6 +314,28 @@ document.querySelectorAll("#controls button").forEach(btn => {
 </script>
 
 <!-- ================= PAGE CONTENT ================= -->
+
+<!-- DSA Portal Button -->
+<div style="text-align: center; margin: 30px 0;">
+  <a href="{{site.baseurl}}/sheriff/" style="
+    display: inline-block;
+    padding: 16px 36px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #1e3a5f;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(245,158,11,0.3);
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+  " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(245,158,11,0.4)';"
+     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(245,158,11,0.3)';">
+    &#9733; Deputy Sheriffs' Association Portal
+  </a>
+  <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 10px;">DSA of San Diego County &mdash; Member Dashboard &amp; Resources</p>
+</div>
+
 ## About
 
 Empower yourself to solve real-world problems, unlock creativity, and open doors to every field—because coding is the language of innovation.
