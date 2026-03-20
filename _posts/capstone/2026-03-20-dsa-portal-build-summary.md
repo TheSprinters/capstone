@@ -767,4 +767,54 @@ sticky_rank: 8
   </table>
 </div>
 
+<!-- ML PLANS -->
+<div class="bs-card">
+  <h2>Planned ML Integration</h2>
+  <p>We plan to add machine learning features to make the portal smarter and more personalized for DSA members.</p>
+
+  <div class="bs-feat-grid">
+    <div class="bs-feat">
+      <div class="f-icon">&#129504;</div>
+      <h4>Smart Content Recommendations</h4>
+      <p>Track which resource tiles, FAQ topics, and newsletter issues each member interacts with, then use <strong>collaborative filtering</strong> to surface the most relevant content on their dashboard</p>
+    </div>
+    <div class="bs-feat">
+      <div class="f-icon">&#128200;</div>
+      <h4>FAQ Auto-Categorization</h4>
+      <p>Use <strong>NLP text classification</strong> (scikit-learn / TF-IDF) to automatically tag and route new member questions to the correct FAQ category or staff contact</p>
+    </div>
+    <div class="bs-feat">
+      <div class="f-icon">&#128101;</div>
+      <h4>Member Engagement Scoring</h4>
+      <p>Build a <strong>logistic regression model</strong> that predicts which members are at risk of disengaging based on login frequency, RSVP history, and resource usage patterns</p>
+    </div>
+    <div class="bs-feat">
+      <div class="f-icon">&#128172;</div>
+      <h4>Chatbot Intent Detection</h4>
+      <p>Train a lightweight <strong>intent classifier</strong> to detect question categories before sending to Claude API &mdash; enabling faster responses for common queries and reducing API costs</p>
+    </div>
+  </div>
+
+  <h3>ML Implementation Plan:</h3>
+  <table class="bs-table">
+    <thead>
+      <tr><th>ML Feature</th><th>Model / Approach</th><th>Data Source</th><th>Stack</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Content recommendations</td><td>Collaborative filtering (item-based)</td><td>User click/interaction logs</td><td>Python, scikit-learn, Flask API</td></tr>
+      <tr><td>FAQ auto-categorization</td><td>TF-IDF + Naive Bayes classifier</td><td>Existing FAQ Q&As + chatbot history</td><td>scikit-learn, NLTK</td></tr>
+      <tr><td>Engagement scoring</td><td>Logistic regression</td><td>Login timestamps, RSVP data, page views</td><td>pandas, scikit-learn</td></tr>
+      <tr><td>Chatbot intent detection</td><td>Text classifier (SVM / logistic)</td><td>Labeled chatbot conversation logs</td><td>scikit-learn, Flask middleware</td></tr>
+    </tbody>
+  </table>
+
+  <h3>How it connects to the existing portal:</h3>
+  <ul>
+    <li><strong>Data collection</strong> &mdash; Log user interactions (tile clicks, searches, RSVPs, chat questions) to a new analytics table in the SQLite database</li>
+    <li><strong>Model training</strong> &mdash; Run offline training scripts in Python using scikit-learn on the collected interaction data</li>
+    <li><strong>Serving predictions</strong> &mdash; Add new Flask API endpoints (e.g., /api/sheriff/recommendations, /api/sheriff/engagement) that return ML predictions</li>
+    <li><strong>Frontend integration</strong> &mdash; Dashboard tiles reorder based on recommendation scores; at-risk members get flagged in the admin panel</li>
+  </ul>
+</div>
+
 </div>
