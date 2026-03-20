@@ -32,13 +32,6 @@ sticky_rank: 8
     color: #ffffff;
   }
 
-  .dsa-timeline-page p,
-  .dsa-timeline-page li,
-  .dsa-timeline-page td,
-  .dsa-timeline-page th {
-    color: #ffffff;
-  }
-
   .dsa-hero {
     background:
       radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 32%),
@@ -104,7 +97,8 @@ sticky_rank: 8
   .dsa-team-card,
   .dsa-summary-card,
   .dsa-week-card,
-  .dsa-milestone {
+  .dsa-milestone,
+  .dsa-outreach-card {
     background: var(--dsa-panel);
     border: 1px solid rgba(13, 92, 143, 0.10);
     border-radius: 22px;
@@ -146,10 +140,12 @@ sticky_rank: 8
     margin-bottom: 2rem;
   }
 
+  /* Cards use dark text on white background */
   .dsa-summary-card,
   .dsa-team-card,
   .dsa-week-card,
-  .dsa-milestone {
+  .dsa-milestone,
+  .dsa-outreach-card {
     background: #ffffff;
     color: var(--dsa-ink);
   }
@@ -157,17 +153,29 @@ sticky_rank: 8
   .dsa-summary-card h3,
   .dsa-team-card h4,
   .dsa-week-card h3,
-  .dsa-milestone h2 {
+  .dsa-milestone h2,
+  .dsa-outreach-card h3 {
     color: var(--dsa-ink);
   }
 
   .dsa-summary-card p,
   .dsa-team-card p,
   .dsa-week-card p,
-  .dsa-milestone p {
+  .dsa-milestone p,
+  .dsa-outreach-card p {
     color: var(--dsa-muted);
     font-weight: 600;
     line-height: 1.7;
+  }
+
+  .dsa-summary-card li,
+  .dsa-team-card li,
+  .dsa-week-card li,
+  .dsa-milestone li,
+  .dsa-outreach-card li {
+    color: #20384d;
+    font-weight: 600;
+    line-height: 1.65;
   }
 
   .dsa-summary-card p:last-child {
@@ -330,6 +338,64 @@ sticky_rank: 8
     margin-bottom: 0;
   }
 
+  .dsa-outreach-card {
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border-left: 8px solid var(--dsa-accent-2);
+  }
+
+  .dsa-outreach-card h3 {
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .dsa-outreach-card ul {
+    margin: 0.75rem 0 0;
+    padding-left: 1.1rem;
+  }
+
+  .dsa-outreach-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--dsa-soft);
+    border-radius: 14px;
+    border: 1px solid rgba(15, 105, 150, 0.10);
+  }
+
+  .dsa-outreach-step-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dsa-accent), var(--dsa-accent-2));
+    color: #fff;
+    font-weight: 800;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dsa-outreach-step-text {
+    flex: 1;
+  }
+
+  .dsa-outreach-step-text strong {
+    color: var(--dsa-ink);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .dsa-outreach-step-text span {
+    color: var(--dsa-muted);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
   @media (max-width: 900px) {
     .dsa-stat-grid,
     .dsa-team-grid {
@@ -382,7 +448,7 @@ sticky_rank: 8
     <span class="dsa-kicker">TheSprinters Project Plan</span>
     <h2>DSA Website Rebuild Timeline</h2>
     <p>
-      This is our ideal 5-week roadmap for rebuilding the Deputy Sheriffs' Association website. The plan keeps the same core milestones, but adds clearer deliverables for what we will design, build, test, and present each week.
+      Our 5-week roadmap for rebuilding the Deputy Sheriffs' Association website — from a polished single-page portal with working authentication and AI-powered features, through QA and final delivery to the DSA organization.
     </p>
     <div class="dsa-stat-grid">
       <div class="dsa-stat">
@@ -403,7 +469,7 @@ sticky_rank: 8
   <section class="dsa-summary-card">
     <h3>What This Timeline Covers</h3>
     <p>
-      The rebuild moves from early prototypes into a working full-stack website, then into polish and final presentation. Across the five weeks, we will cover homepage redesign, navigation improvements, member portal UX, FAQ structure, contact flow, API and authentication work, responsive frontend implementation, accessibility checks, QA, and stakeholder-facing delivery materials.
+      The rebuild transforms the existing dsasd.org WordPress site into a modern, single-page portal with functional authentication, an AI chatbot, interactive FAQ, searchable content, and a streamlined member dashboard. Across five weeks we move from UI prototyping and backend API work, through integration and polish, to a presentation-ready package for the DSA organization.
     </p>
   </section>
 
@@ -414,19 +480,19 @@ sticky_rank: 8
       <div class="dsa-week-top">
         <div>
           <span class="dsa-week-chip">Week 1</span>
-          <h3>Prototype and Scope Lock</h3>
+          <h3>Portal UI and Backend Foundation</h3>
         </div>
         <div class="dsa-week-date">March 23-27, 2026</div>
       </div>
-      <div class="dsa-focus">Focus: Rapid prototypes of key features</div>
+      <div class="dsa-focus">Focus: Polished UI + backend APIs</div>
       <p>
-        We begin by shaping the core user experience and confirming what the rebuild needs to include before development gets too deep.
+        Build the single-page portal layout and wire up the Flask backend with sheriff authentication and data models.
       </p>
       <ul>
-        <li>Clickable UI prototypes for the homepage, member portal dashboard, FAQ hub, and contact flow.</li>
-        <li>Feature list locked and scope confirmed so the team knows exactly what the final build must deliver.</li>
-        <li>Early navigation, content hierarchy, and page-to-page user flow decisions mapped out.</li>
-        <li>Initial technical planning for backend routes, data needs, and integration points.</li>
+        <li>Single-page portal UI with hero, about, services, FAQ, newsletter, board, events, contact, and footer sections.</li>
+        <li>Flask backend with Sheriff model, JWT authentication (login/signup), and CRUD endpoints.</li>
+        <li>Smooth-scroll navigation with active link highlighting and working search bar.</li>
+        <li>Real DSA images (logo, store photos, board portraits, memorial, golf tournament) integrated from dsasd.org.</li>
       </ul>
     </article>
 
@@ -434,19 +500,20 @@ sticky_rank: 8
       <div class="dsa-week-top">
         <div>
           <span class="dsa-week-chip">Week 2</span>
-          <h3>Design System and Frontend Foundation</h3>
+          <h3>Interactive Features and AI Chatbot</h3>
         </div>
         <div class="dsa-week-date">March 30-April 3, 2026</div>
       </div>
-      <div class="dsa-focus">Focus: Design system + frontend foundation</div>
+      <div class="dsa-focus">Focus: Making every button functional</div>
       <p>
-        After the concept is approved, we translate prototypes into a reusable visual and technical system that the whole site can build on.
+        Connect all interactive elements to the backend and add the AI-powered chatbot for member support.
       </p>
       <ul>
-        <li>Final UI kit established with colors, typography, spacing, card patterns, buttons, and layout rules.</li>
-        <li>Responsive page skeletons created and wired to mock data to test layout behavior across desktop and mobile.</li>
-        <li>Navigation shell, reusable components, and content sections prepared for later API integration.</li>
-        <li>Content inventory and QA review used to catch missing assets or unclear copy early.</li>
+        <li>AI chatbot powered by Claude API with conversation history and DSA-specific system prompt.</li>
+        <li>FAQ section with category tag filtering, keyword search, and expandable answers.</li>
+        <li>Login/signup modals wired to sheriff auth endpoints with cookie-based sessions.</li>
+        <li>Admin panel for managing sheriff users (view all, update roles, delete accounts).</li>
+        <li>Newsletter section with interactive Silver Star preview cards and expandable content.</li>
       </ul>
     </article>
 
@@ -454,19 +521,19 @@ sticky_rank: 8
       <div class="dsa-week-top">
         <div>
           <span class="dsa-week-chip">Week 3</span>
-          <h3>Core Build and Integrations</h3>
+          <h3>Code Quality and SRP Refactoring</h3>
         </div>
         <div class="dsa-week-date">April 6-10, 2026</div>
       </div>
-      <div class="dsa-focus">Focus: Core build: backend + integrations</div>
+      <div class="dsa-focus">Focus: Clean code + Single Responsibility Principle</div>
       <p>
-        This is the production-heavy week where the rebuild shifts from mockups into a working system.
+        Refactor frontend and backend code to follow SRP, improving maintainability without changing functionality.
       </p>
       <ul>
-        <li>Authentication, member data endpoints, and content management hooks implemented.</li>
-        <li>Frontend components connected to live APIs so the portal and dynamic site areas reflect real data.</li>
-        <li>Error handling, edge cases, and integration logic reviewed while the main flows are still being built.</li>
-        <li>Core functionality validated against the original scope to keep the final sprint focused on polish instead of rework.</li>
+        <li>Frontend JS refactored into 30+ focused helper functions (DOM helpers, auth, chatbot, search, FAQ, admin, UI state).</li>
+        <li>Backend sheriff.py refactored — extracted AuthError, decode_sheriff_token, require_admin, set_sheriff_cookie, validate_signup_data.</li>
+        <li>Backend sheriff_chat.py refactored — split monolithic handler into validate, build, call, and parse functions.</li>
+        <li>Shared apiRequest() wrapper on frontend to eliminate duplicate fetch logic across all endpoints.</li>
       </ul>
     </article>
 
@@ -474,19 +541,19 @@ sticky_rank: 8
       <div class="dsa-week-top">
         <div>
           <span class="dsa-week-chip">Week 4</span>
-          <h3>Polish, QA, and Accessibility</h3>
+          <h3>Polish, Testing, and Responsiveness</h3>
         </div>
         <div class="dsa-week-date">April 13-17, 2026</div>
       </div>
-      <div class="dsa-focus">Focus: Polish + QA</div>
+      <div class="dsa-focus">Focus: QA + cross-device polish</div>
       <p>
-        With the main functionality in place, the team shifts to quality, consistency, and readiness for external review.
+        With all features working, focus shifts to visual polish, accessibility, and testing across devices.
       </p>
       <ul>
-        <li>Accessibility pass completed for readability, structure, contrast, navigation clarity, and usability.</li>
-        <li>Performance tuning, bug fixing, and load checks reduce friction across devices and browsers.</li>
-        <li>Cross-device testing verifies mobile responsiveness and overall visual consistency.</li>
-        <li>Content review ensures the site feels complete, accurate, and aligned with stakeholder expectations.</li>
+        <li>Responsive layout testing on mobile, tablet, and desktop breakpoints.</li>
+        <li>Accessibility pass — contrast ratios, keyboard navigation, screen reader labels.</li>
+        <li>Bug fixes for edge cases in auth flow, chatbot error handling, and search behavior.</li>
+        <li>Performance tuning — image optimization, lazy loading, and smooth animations.</li>
       </ul>
     </article>
 
@@ -494,47 +561,80 @@ sticky_rank: 8
       <div class="dsa-week-top">
         <div>
           <span class="dsa-week-chip">Week 5</span>
-          <h3>Final Package and Stakeholder Outreach</h3>
+          <h3>Presentation and DSA Outreach</h3>
         </div>
         <div class="dsa-week-date">April 20-24, 2026</div>
       </div>
-      <div class="dsa-focus">Focus: Final package + stakeholder outreach</div>
+      <div class="dsa-focus">Focus: Final package + DSA organization outreach</div>
       <p>
-        The last week is about packaging the work professionally and preparing for presentation to the Deputy Sheriffs' Association.
+        Package the complete rebuild and present it to the Deputy Sheriffs' Association for feedback and adoption.
       </p>
       <ul>
-        <li>Final build packaged and deployment-ready with a clean handoff plan.</li>
-        <li>Demo script, talking points, and presentation deck prepared to communicate the redesign clearly.</li>
-        <li>Final design tweaks applied so the experience feels polished and intentional.</li>
-        <li>Outreach to the Deputy Sheriffs' Association scheduled with a presentation-ready deliverable set.</li>
+        <li>Final build packaged with deployment-ready configuration and clean handoff documentation.</li>
+        <li>Demo walkthrough prepared showing before/after comparison with dsasd.org.</li>
+        <li>Presentation deck highlighting reduced clicks, AI features, modern UI, and mobile responsiveness.</li>
+        <li>Formal outreach email and meeting with DSA leadership to present the redesign proposal.</li>
       </ul>
     </article>
   </div>
+
+  <h2 class="dsa-section-title">DSA Organization Communication Plan</h2>
+
+  <section class="dsa-outreach-card">
+    <h3>How We Plan to Engage the DSA</h3>
+    <p>
+      Our outreach strategy ensures the DSA organization is informed and involved at the right moments — not just at the end.
+    </p>
+
+    <div class="dsa-outreach-step">
+      <div class="dsa-outreach-step-num">1</div>
+      <div class="dsa-outreach-step-text">
+        <strong>Week 2 — Initial Contact (March 30)</strong>
+        <span>Send an introductory email to DSA leadership explaining the project, sharing early screenshots of the polished portal, and asking for any priorities or feedback on direction.</span>
+      </div>
+    </div>
+
+    <div class="dsa-outreach-step">
+      <div class="dsa-outreach-step-num">2</div>
+      <div class="dsa-outreach-step-text">
+        <strong>Week 4 — Progress Update (April 13)</strong>
+        <span>Share a live demo link or video walkthrough of the working portal with authentication, chatbot, and all interactive features. Collect feedback on any adjustments before final polish.</span>
+      </div>
+    </div>
+
+    <div class="dsa-outreach-step">
+      <div class="dsa-outreach-step-num">3</div>
+      <div class="dsa-outreach-step-text">
+        <strong>Week 5 — Formal Presentation (April 20-24)</strong>
+        <span>Schedule an in-person or virtual meeting with DSA leadership to present the final rebuild, walk through the before/after comparison, and discuss next steps for adoption or integration with dsasd.org.</span>
+      </div>
+    </div>
+  </section>
 
   <h2 class="dsa-section-title">Work Split (3 Members)</h2>
 
   <div class="dsa-team-grid">
     <section class="dsa-team-card">
-      <span class="dsa-role-tag">Moiz · Backend</span>
-      <h4>System and Data Ownership</h4>
+      <span class="dsa-role-tag">Akhil · Backend & API</span>
+      <h4>System Architecture</h4>
       <p>
-        API design, authentication, data models, integration with member data, and deployment readiness.
+        Flask API design, Sheriff model and database, JWT authentication, Claude AI chatbot endpoint, SRP refactoring of backend files.
       </p>
     </section>
 
     <section class="dsa-team-card">
-      <span class="dsa-role-tag">Neil · UI</span>
+      <span class="dsa-role-tag">Neil · UI/UX & Frontend</span>
       <h4>Interface and Experience</h4>
       <p>
-        Visual system, UI prototypes, responsive layouts, and final frontend polish.
+        Single-page portal layout, responsive design, real DSA image integration, search and FAQ interactivity, frontend SRP refactoring.
       </p>
     </section>
 
     <section class="dsa-team-card">
-      <span class="dsa-role-tag">Akhil · All-rounder</span>
-      <h4>Support, QA, and Delivery</h4>
+      <span class="dsa-role-tag">Moiz · Calendar & Info Architecture</span>
+      <h4>Content and Delivery</h4>
       <p>
-        Full-stack support wherever needed, QA and testing, and stakeholder presentation materials.
+        Information architecture, events and newsletter content, QA and cross-device testing, DSA outreach coordination and presentation materials.
       </p>
     </section>
   </div>
@@ -545,41 +645,41 @@ sticky_rank: 8
     <thead>
       <tr>
         <th>Week (Dates)</th>
-        <th>Moiz</th>
-        <th>Neil</th>
         <th>Akhil</th>
+        <th>Neil</th>
+        <th>Moiz</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Week 1</strong><br>March 23-27, 2026</td>
-        <td>Prototype backend routes + data model sketch</td>
-        <td>Clickable UI prototypes</td>
-        <td>UX flow review + feedback synthesis</td>
+        <td><strong>Week 1</strong><br>March 23-27</td>
+        <td>Sheriff model, JWT auth, CRUD API endpoints</td>
+        <td>Single-page portal UI, smooth scroll, real DSA images</td>
+        <td>Content inventory, navigation structure, UX flow</td>
       </tr>
       <tr>
-        <td><strong>Week 2</strong><br>March 30-April 3, 2026</td>
-        <td>API scaffolding + auth plan</td>
-        <td>Design system + page skeletons</td>
-        <td>QA on prototypes + content inventory</td>
+        <td><strong>Week 2</strong><br>March 30-April 3</td>
+        <td>Claude chatbot API, admin endpoints</td>
+        <td>Login/signup modals, FAQ interactivity, search bar</td>
+        <td>Newsletter cards, events section, initial DSA email</td>
       </tr>
       <tr>
-        <td><strong>Week 3</strong><br>April 6-10, 2026</td>
-        <td>Implement auth + member endpoints</td>
-        <td>Integrate UI with APIs</td>
-        <td>Fixes, edge cases, and test coverage</td>
+        <td><strong>Week 3</strong><br>April 6-10</td>
+        <td>SRP refactor: sheriff.py, sheriff_chat.py</td>
+        <td>SRP refactor: frontend JS (30+ helpers)</td>
+        <td>SRP blog writeup, integration testing</td>
       </tr>
       <tr>
-        <td><strong>Week 4</strong><br>April 13-17, 2026</td>
-        <td>Load/perf checks + logging</td>
-        <td>Final UI polish + accessibility</td>
-        <td>Cross-device QA + content review</td>
+        <td><strong>Week 4</strong><br>April 13-17</td>
+        <td>API error handling, performance checks</td>
+        <td>Responsive polish, accessibility pass</td>
+        <td>Cross-device QA, DSA progress update email</td>
       </tr>
       <tr>
-        <td><strong>Week 5</strong><br>April 20-24, 2026</td>
-        <td>Deployment checklist + handoff</td>
-        <td>Final design tweaks</td>
-        <td>Demo script + stakeholder outreach</td>
+        <td><strong>Week 5</strong><br>April 20-24</td>
+        <td>Deployment config, handoff docs</td>
+        <td>Final UI tweaks, before/after visuals</td>
+        <td>Demo script, presentation deck, DSA meeting</td>
       </tr>
     </tbody>
   </table>
@@ -587,10 +687,10 @@ sticky_rank: 8
   <section class="dsa-milestone">
     <h2>Final Milestone</h2>
     <p>
-      By <strong>April 24, 2026</strong>, we will have a complete, polished rebuild ready for presentation and formal outreach to the Deputy Sheriffs' Association.
+      By <strong>April 24, 2026</strong>, we will deliver a complete, polished DSA portal rebuild with working authentication, AI chatbot, interactive FAQ, and a modern responsive design — ready for formal presentation to the Deputy Sheriffs' Association.
     </p>
     <p>
-      The final result is not just a coded website, but a full capstone package: working product, tested experience, clear design system, and a presentation-ready story of the rebuild.
+      The final deliverable includes the working portal, clean refactored codebase, deployment documentation, and a presentation package comparing our rebuild against the current dsasd.org site.
     </p>
   </section>
 </div>
