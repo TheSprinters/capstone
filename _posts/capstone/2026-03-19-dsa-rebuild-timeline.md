@@ -11,7 +11,7 @@ sticky_rank: 8
   .dsa-timeline-page {
     --dsa-bg: linear-gradient(180deg, #f5f7fb 0%, #eef4f8 100%);
     --dsa-ink: #12263a;
-    --dsa-muted: #4c6278;
+    --dsa-muted: #30485e;
     --dsa-line: rgba(12, 49, 84, 0.12);
     --dsa-panel: linear-gradient(180deg, #ffffff 0%, #f9fbfd 100%);
     --dsa-accent: #0e5a86;
@@ -83,8 +83,10 @@ sticky_rank: 8
   }
 
   .dsa-hero p {
-    color: rgba(255, 255, 255, 0.94);
-    font-size: 1.02rem;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.7;
     max-width: 760px;
     margin-bottom: 1.5rem;
   }
@@ -109,10 +111,9 @@ sticky_rank: 8
 
   .dsa-stat {
     padding: 1.1rem 1rem;
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.24);
+    background: rgba(255, 255, 255, 0.24);
+    border-color: rgba(255, 255, 255, 0.34);
     box-shadow: none;
-    backdrop-filter: blur(6px);
   }
 
   .dsa-stat-label {
@@ -120,12 +121,14 @@ sticky_rank: 8
     font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 700;
     margin-bottom: 0.35rem;
   }
 
   .dsa-stat strong {
-    font-size: 1.15rem;
+    font-size: 1.18rem;
+    font-weight: 800;
     color: #fff;
   }
 
@@ -143,7 +146,7 @@ sticky_rank: 8
   .dsa-team-card,
   .dsa-week-card,
   .dsa-milestone {
-    background: rgba(255, 255, 255, 0.96);
+    background: #ffffff;
   }
 
   .dsa-summary-card p,
@@ -151,6 +154,8 @@ sticky_rank: 8
   .dsa-week-card p,
   .dsa-milestone p {
     color: var(--dsa-muted);
+    font-weight: 500;
+    line-height: 1.7;
   }
 
   .dsa-summary-card p:last-child {
@@ -216,19 +221,20 @@ sticky_rank: 8
   }
 
   .dsa-week-date {
-    color: #375168;
-    font-weight: 600;
+    color: #27465e;
+    font-weight: 700;
     white-space: nowrap;
   }
 
   .dsa-week-card h3 {
     margin: 0 0 0.4rem;
     font-size: 1.35rem;
+    font-weight: 800;
   }
 
   .dsa-focus {
     color: var(--dsa-accent);
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 0.65rem;
   }
 
@@ -240,6 +246,8 @@ sticky_rank: 8
   .dsa-week-card li {
     margin-bottom: 0.45rem;
     color: #20384d;
+    font-weight: 500;
+    line-height: 1.65;
   }
 
   .dsa-team-card {
@@ -248,6 +256,7 @@ sticky_rank: 8
 
   .dsa-team-card h4 {
     margin-bottom: 0.45rem;
+    font-weight: 800;
   }
 
   .dsa-role-tag {
@@ -261,6 +270,7 @@ sticky_rank: 8
     border-radius: 999px;
     padding: 0.35rem 0.65rem;
     margin-bottom: 0.8rem;
+    border: 1px solid rgba(14, 90, 134, 0.12);
   }
 
   .dsa-ownership-table {
@@ -278,17 +288,19 @@ sticky_rank: 8
     text-align: left;
     vertical-align: top;
     border: 1px solid var(--dsa-line);
+    line-height: 1.6;
   }
 
   .dsa-ownership-table th {
     background: linear-gradient(135deg, #12314d 0%, #175d84 100%);
     color: #fff;
-    font-weight: 700;
+    font-weight: 800;
   }
 
   .dsa-ownership-table td {
-    background: rgba(255, 255, 255, 0.98);
+    background: #ffffff;
     color: #173047;
+    font-weight: 500;
   }
 
   .dsa-milestone {
