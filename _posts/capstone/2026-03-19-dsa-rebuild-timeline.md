@@ -9,40 +9,40 @@ sticky_rank: 8
 
 <style>
   .dsa-timeline-page {
-    --dsa-bg: linear-gradient(180deg, #f5f7fb 0%, #eef4f8 100%);
-    --dsa-ink: #12263a;
-    --dsa-muted: #30485e;
-    --dsa-line: rgba(12, 49, 84, 0.12);
-    --dsa-panel: linear-gradient(180deg, #ffffff 0%, #f9fbfd 100%);
-    --dsa-accent: #0e5a86;
-    --dsa-accent-2: #2c9aa0;
-    --dsa-soft: #e5f2fa;
+    --dsa-bg: linear-gradient(180deg, #0f2031 0%, #162c43 100%);
+    --dsa-ink: #152b3f;
+    --dsa-muted: #314b61;
+    --dsa-line: rgba(16, 55, 92, 0.12);
+    --dsa-panel: #ffffff;
+    --dsa-accent: #0f6996;
+    --dsa-accent-2: #29a0a8;
+    --dsa-soft: #e8f4fb;
     --dsa-gold: #e6a93f;
-    --dsa-shadow: 0 18px 45px rgba(16, 32, 51, 0.08);
-    color: var(--dsa-ink);
+    --dsa-shadow: 0 22px 48px rgba(4, 14, 24, 0.28);
+    color: #ffffff;
     background: var(--dsa-bg);
-    border: 1px solid rgba(14, 90, 134, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 30px;
-    padding: 1.4rem;
+    padding: 1.5rem;
   }
 
   .dsa-timeline-page h2,
   .dsa-timeline-page h3,
   .dsa-timeline-page h4 {
-    color: var(--dsa-ink);
+    color: #ffffff;
   }
 
   .dsa-timeline-page p,
   .dsa-timeline-page li,
   .dsa-timeline-page td,
   .dsa-timeline-page th {
-    color: var(--dsa-ink);
+    color: #ffffff;
   }
 
   .dsa-hero {
     background:
-      radial-gradient(circle at top right, rgba(255, 255, 255, 0.24), transparent 32%),
-      linear-gradient(135deg, #12314d 0%, #175d84 58%, #2d8991 100%);
+      radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 32%),
+      linear-gradient(135deg, #12314d 0%, #15557a 58%, #21848d 100%);
     color: #fff;
     border-radius: 28px;
     padding: 2.5rem 2rem;
@@ -70,8 +70,9 @@ sticky_rank: 8
     font-weight: 700;
     padding: 0.45rem 0.75rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.18);
-    color: #f8fcff;
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     margin-bottom: 1rem;
   }
 
@@ -80,6 +81,7 @@ sticky_rank: 8
     font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.05;
     margin-bottom: 0.75rem;
+    font-weight: 800;
   }
 
   .dsa-hero p {
@@ -111,8 +113,8 @@ sticky_rank: 8
 
   .dsa-stat {
     padding: 1.1rem 1rem;
-    background: rgba(255, 255, 255, 0.24);
-    border-color: rgba(255, 255, 255, 0.34);
+    background: rgba(9, 23, 36, 0.38);
+    border-color: rgba(255, 255, 255, 0.18);
     box-shadow: none;
   }
 
@@ -135,6 +137,8 @@ sticky_rank: 8
   .dsa-section-title {
     margin: 2.5rem 0 1rem;
     font-size: 1.6rem;
+    color: #ffffff;
+    font-weight: 800;
   }
 
   .dsa-summary-card {
@@ -147,6 +151,14 @@ sticky_rank: 8
   .dsa-week-card,
   .dsa-milestone {
     background: #ffffff;
+    color: var(--dsa-ink);
+  }
+
+  .dsa-summary-card h3,
+  .dsa-team-card h4,
+  .dsa-week-card h3,
+  .dsa-milestone h2 {
+    color: var(--dsa-ink);
   }
 
   .dsa-summary-card p,
@@ -154,7 +166,7 @@ sticky_rank: 8
   .dsa-week-card p,
   .dsa-milestone p {
     color: var(--dsa-muted);
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.7;
   }
 
@@ -177,7 +189,7 @@ sticky_rank: 8
     width: 3px;
     border-radius: 999px;
     background: linear-gradient(180deg, var(--dsa-accent), var(--dsa-accent-2));
-    opacity: 0.9;
+    opacity: 1;
   }
 
   .dsa-week-card {
@@ -212,12 +224,13 @@ sticky_rank: 8
     background: var(--dsa-soft);
     color: var(--dsa-accent);
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     padding: 0.4rem 0.7rem;
     border-radius: 999px;
     margin-bottom: 0.55rem;
+    border: 1px solid rgba(15, 105, 150, 0.12);
   }
 
   .dsa-week-date {
@@ -246,7 +259,7 @@ sticky_rank: 8
   .dsa-week-card li {
     margin-bottom: 0.45rem;
     color: #20384d;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.65;
   }
 
@@ -307,6 +320,10 @@ sticky_rank: 8
     padding: 1.5rem;
     margin-top: 2rem;
     border-left: 8px solid var(--dsa-gold);
+  }
+
+  .dsa-milestone h2 {
+    font-weight: 800;
   }
 
   .dsa-milestone p:last-child {
