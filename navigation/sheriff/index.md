@@ -4,7 +4,6 @@ title: DSA Portal
 permalink: /sheriff/
 search_exclude: true
 ---
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
