@@ -93,17 +93,32 @@ search_exclude: true
     /* ===== HERO ===== */
     .hero {
       padding: 100px 24px 80px; text-align: center;
-      background: linear-gradient(170deg, #0f2847 0%, #162a46 40%, #0b1a2e 100%);
+      background: linear-gradient(170deg, rgba(15,40,71,0.92) 0%, rgba(22,42,70,0.94) 40%, rgba(11,26,46,0.96) 100%);
       position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('{{ site.baseurl }}/images/dsa/store-uniforms.jpg') center/cover no-repeat;
+      opacity: 0.12; z-index: 0;
     }
     .hero::after {
       content: ''; position: absolute; top: 50%; left: 50%; width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(251,191,36,0.04) 0%, transparent 70%);
-      transform: translate(-50%,-50%); pointer-events: none;
+      background: radial-gradient(circle, rgba(251,191,36,0.06) 0%, transparent 70%);
+      transform: translate(-50%,-50%); pointer-events: none; z-index: 0;
     }
     .hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .hero-logo { width: 110px; height: auto; margin-bottom: 20px; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5)); }
     .hero h2 { font-size: 2.6rem; font-weight: 800; background: linear-gradient(135deg,#fbbf24,#f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 14px; }
     .hero p { font-size: 1.05rem; color: #7f8ea3; margin-bottom: 28px; }
+
+    /* Image cards */
+    .img-card { border-radius: 12px; overflow: hidden; }
+    .img-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .news-card .img-card img { height: 160px; }
+    .about-card .img-card { margin-bottom: 14px; }
+    .about-card .img-card img { height: 170px; }
+    .store-hero { border-radius: 14px; overflow: hidden; margin-bottom: 24px; }
+    .store-hero img { width: 100%; height: 240px; object-fit: cover; display: block; }
     .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .hero-cta .btn { padding: 12px 28px; font-size: 0.9rem; border-radius: 10px; }
     .stats { display: flex; justify-content: center; gap: 48px; margin-top: 50px; flex-wrap: wrap; }
@@ -321,7 +336,7 @@ search_exclude: true
 <header class="header">
   <div class="header-inner">
     <div class="logo" onclick="scrollTo('#top')">
-      <div class="logo-badge">DSA</div>
+      <img src="{{ site.baseurl }}/images/dsa/dsa-logo.png" alt="DSA Logo" style="width:42px;height:auto;">
       <div><div class="logo-text">Deputy Sheriffs' Assoc.</div><div class="logo-sub">San Diego County</div></div>
     </div>
     <nav>
@@ -363,6 +378,7 @@ search_exclude: true
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-inner">
+    <img src="{{ site.baseurl }}/images/dsa/dsa-logo.png" alt="DSA Badge" class="hero-logo">
     <h2>The Strength Behind the Badge</h2>
     <p>Representing the dedicated officers of the San Diego County Sheriff's Department since 1955. Benefits, legal defense, events, and advocacy &mdash; all in one place.</p>
     <div class="hero-cta">
@@ -458,6 +474,7 @@ search_exclude: true
 <div class="detail-panel" id="dp-newsletters"><div class="dp-card">
   <button class="dp-close" onclick="closeDetail('newsletters')">&times;</button>
   <h3>Newsletters & Publications</h3>
+  <div style="margin-bottom:16px;border-radius:10px;overflow:hidden"><img src="{{ site.baseurl }}/images/dsa/silver-star-newsletter.jpg" alt="Silver Star Newsletter" style="width:100%;max-height:180px;object-fit:cover;display:block"></div>
   <p>Stay informed with DSA communications:</p>
   <ul>
     <li><strong>Monthly Newsletter:</strong> DSA updates, member spotlights, benefit reminders, and legislative news.</li>
@@ -485,9 +502,9 @@ search_exclude: true
 <div class="section" id="news">
   <div class="sec-head"><h2>Latest News</h2></div>
   <div class="news-grid">
-    <div class="news-card"><span class="news-tag t-ann">Announcement</span><h3>2026 Contract Negotiations Update</h3><p>The DSA bargaining team has reached a tentative agreement with the county on wages, benefits, and working conditions for the next three years.</p><div class="news-date">March 15, 2026</div></div>
-    <div class="news-card"><span class="news-tag t-evt">Event</span><h3>Annual DSA Family Picnic</h3><p>Join us at Poway Community Park on April 12th. Food, games, and fellowship for all DSA members and families.</p><div class="news-date">March 10, 2026</div></div>
-    <div class="news-card"><span class="news-tag t-ben">Benefit</span><h3>New Dental Plan Options</h3><p>Expanded Delta Dental coverage now available. Open enrollment begins April 1st with improved major services rates.</p><div class="news-date">March 5, 2026</div></div>
+    <div class="news-card"><div class="img-card"><img src="{{ site.baseurl }}/images/dsa/board-portrait.png" alt="DSA Board Member"></div><span class="news-tag t-ann">Announcement</span><h3>2026 Contract Negotiations Update</h3><p>The DSA bargaining team has reached a tentative agreement with the county on wages, benefits, and working conditions for the next three years.</p><div class="news-date">March 15, 2026</div></div>
+    <div class="news-card"><div class="img-card"><img src="{{ site.baseurl }}/images/dsa/golf-tournament-photo.png" alt="DSA Golf Tournament"></div><span class="news-tag t-evt">Event</span><h3>Annual DSA Family Picnic</h3><p>Join us at Poway Community Park on April 12th. Food, games, and fellowship for all DSA members and families.</p><div class="news-date">March 10, 2026</div></div>
+    <div class="news-card"><div class="img-card"><img src="{{ site.baseurl }}/images/dsa/silver-star-newsletter.jpg" alt="Silver Star Newsletter"></div><span class="news-tag t-ben">Benefit</span><h3>New Dental Plan Options</h3><p>Expanded Delta Dental coverage now available. Open enrollment begins April 1st with improved major services rates.</p><div class="news-date">March 5, 2026</div></div>
   </div>
 </div>
 
@@ -499,8 +516,8 @@ search_exclude: true
     <div class="ev"><div class="ev-date"><div class="m">APR</div><div class="d">12</div></div><div class="ev-info"><h4>Annual Family Picnic</h4><p>Poway Community Park &mdash; 11:00 AM</p></div><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
     <div class="ev"><div class="ev-date"><div class="m">APR</div><div class="d">18</div></div><div class="ev-info"><h4>Wellness Workshop: Stress Management</h4><p>Virtual Event &mdash; 2:00 PM</p></div><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
     <div class="ev"><div class="ev-date"><div class="m">MAY</div><div class="d">01</div></div><div class="ev-info"><h4>Deputy of the Year Awards</h4><p>Hilton San Diego &mdash; 7:00 PM</p></div><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
-    <div class="ev"><div class="ev-date"><div class="m">MAY</div><div class="d">15</div></div><div class="ev-info"><h4>Charity Golf Tournament</h4><p>Maderas Golf Club &mdash; 8:00 AM</p></div><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
-    <div class="ev"><div class="ev-date"><div class="m">MAY</div><div class="d">22</div></div><div class="ev-info"><h4>Law Enforcement Memorial</h4><p>County Admin Center &mdash; 10:00 AM</p></div><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
+    <div class="ev"><div class="ev-date"><div class="m">MAY</div><div class="d">15</div></div><div class="ev-info"><h4>Charity Golf Tournament</h4><p>Morgan Run Club & Resort &mdash; 8:00 AM</p></div><img src="{{ site.baseurl }}/images/dsa/golf-tournament-flyer.png" alt="Golf Tournament" style="width:48px;height:48px;border-radius:8px;object-fit:cover;margin-left:auto;margin-right:8px;flex-shrink:0"><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
+    <div class="ev"><div class="ev-date"><div class="m">MAY</div><div class="d">22</div></div><div class="ev-info"><h4>Law Enforcement Memorial</h4><p>County Admin Center &mdash; 10:00 AM</p></div><img src="{{ site.baseurl }}/images/dsa/memorial-line-of-duty.png" alt="Line of Duty Memorial" style="width:48px;height:48px;border-radius:8px;object-fit:cover;margin-left:auto;margin-right:8px;flex-shrink:0"><button class="ev-rsvp" onclick="rsvp(this)">RSVP</button></div>
   </div>
 </div>
 
@@ -509,6 +526,7 @@ search_exclude: true
   <div class="sec-head"><h2>About the DSA</h2></div>
   <div class="about-grid">
     <div class="about-card">
+      <div class="img-card"><img src="{{ site.baseurl }}/images/dsa/dsa-logo.png" alt="DSA Logo" style="height:170px;object-fit:contain;background:#e8ecf0;padding:20px"></div>
       <h3>Our Mission</h3>
       <p>The Deputy Sheriffs' Association of San Diego County is the labor union representing all sworn personnel of the San Diego County Sheriff's Department. Founded in 1955, we negotiate contracts, provide legal defense, support political action, and deliver member benefits and wellness programs for over 4,229 members.</p>
       <p style="margin-top:10px">As the exclusive collective bargaining unit, the DSA negotiates Memoranda of Understanding (MOUs) covering wages, benefits, working conditions, overtime, and retirement with the County of San Diego.</p>
@@ -523,11 +541,13 @@ search_exclude: true
       </ul>
     </div>
     <div class="about-card">
+      <div class="img-card"><img src="{{ site.baseurl }}/images/dsa/board-portrait.png" alt="DSA Board Member"></div>
       <h3>Leadership</h3>
       <p>The DSA is governed by a Board of Directors elected by the membership. The Board meets monthly at DSA Headquarters in Poway to review operations, approve expenditures, and set policy direction.</p>
       <p style="margin-top:8px">Shop stewards are assigned to each station and facility to provide frontline union representation and ensure contract compliance.</p>
     </div>
     <div class="about-card">
+      <div class="img-card"><img src="{{ site.baseurl }}/images/dsa/memorial-line-of-duty.png" alt="Line of Duty Memorial"></div>
       <h3>History</h3>
       <p>Since 1955, the DSA has grown from a small association of deputies to one of the largest law enforcement labor organizations in California. Key milestones include establishing the Legal Defense Fund, negotiating landmark contracts, and expanding wellness and peer support services.</p>
     </div>
@@ -537,6 +557,7 @@ search_exclude: true
 <!-- STORE -->
 <div class="section" id="store">
   <div class="sec-head"><h2>DSA Store</h2><p>Official merchandise &mdash; member discounts applied automatically</p></div>
+  <div class="store-hero"><img src="{{ site.baseurl }}/images/dsa/store-interior.jpg" alt="DSA Store Interior"></div>
   <div class="store-grid">
     <div class="store-item"><div class="si-icon">&#128085;</div><h4>Polo Shirt</h4><p>Embroidered DSA logo</p><div class="price">$35</div></div>
     <div class="store-item"><div class="si-icon">&#129506;</div><h4>Baseball Cap</h4><p>Adjustable, navy blue</p><div class="price">$22</div></div>
@@ -547,7 +568,11 @@ search_exclude: true
     <div class="store-item"><div class="si-icon">&#127939;</div><h4>Workout Tee</h4><p>Moisture-wicking</p><div class="price">$28</div></div>
     <div class="store-item"><div class="si-icon">&#128218;</div><h4>Patch Set</h4><p>Velcro-backed, set of 3</p><div class="price">$20</div></div>
   </div>
-  <p style="text-align:center;margin-top:20px;color:#475569;font-size:0.8rem">Also available at DSA HQ, 13881 Danielson St, Poway &mdash; Online orders ship within 5-7 business days</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px">
+    <div style="border-radius:10px;overflow:hidden"><img src="{{ site.baseurl }}/images/dsa/store-relaunch-flyer.png" alt="DSA Store Relaunch" style="width:100%;height:180px;object-fit:cover;display:block"></div>
+    <div style="border-radius:10px;overflow:hidden"><img src="{{ site.baseurl }}/images/dsa/store-uniforms.jpg" alt="DSA Uniforms" style="width:100%;height:180px;object-fit:cover;display:block"></div>
+  </div>
+  <p style="text-align:center;margin-top:16px;color:#475569;font-size:0.8rem">Also available at DSA HQ, 13881 Danielson St, Poway &mdash; Online orders ship within 5-7 business days</p>
 </div>
 
 <!-- FAQ -->
@@ -580,6 +605,11 @@ search_exclude: true
 <!-- CONTACT -->
 <div class="section" id="contact">
   <div class="sec-head"><h2>Contact Us</h2></div>
+  <div style="display:flex;gap:16px;justify-content:center;margin-bottom:24px;flex-wrap:wrap">
+    <div style="text-align:center"><img src="{{ site.baseurl }}/images/dsa/staff-photo-1.png" alt="DSA Staff" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid #fbbf24"><p style="font-size:0.72rem;color:#94a3b8;margin-top:4px">DSA Staff</p></div>
+    <div style="text-align:center"><img src="{{ site.baseurl }}/images/dsa/staff-photo-2.png" alt="DSA Staff" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid #fbbf24"><p style="font-size:0.72rem;color:#94a3b8;margin-top:4px">DSA Staff</p></div>
+    <div style="text-align:center"><img src="{{ site.baseurl }}/images/dsa/board-portrait.png" alt="Board Member" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid #fbbf24"><p style="font-size:0.72rem;color:#94a3b8;margin-top:4px">Board Member</p></div>
+  </div>
   <div class="contact-row">
     <div class="c-card"><div class="c-icon">&#128205;</div><h4>Visit Us</h4><p>13881 Danielson Street<br>Poway, CA 92064</p><p style="margin-top:6px;font-size:0.75rem;color:#475569">Mon-Fri 8:00 AM - 5:00 PM</p></div>
     <div class="c-card"><div class="c-icon">&#128222;</div><h4>Call Us</h4><p><a href="tel:+18584869009">(858) 486-9009</a></p><p style="margin-top:4px;font-size:0.75rem;color:#475569">24/7 Legal Hotline available</p></div>
@@ -596,7 +626,7 @@ search_exclude: true
 <!-- FOOTER -->
 <footer>
   <div class="ft-inner">
-    <div class="ft-col"><h4>Deputy Sheriffs' Association</h4><p>13881 Danielson Street, Poway, CA 92064</p><p>(858) 486-9009 &middot; info@dsasd.org</p><p style="margin-top:8px;color:#1e3352">&copy; 2026 DSA San Diego County</p></div>
+    <div class="ft-col"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><img src="{{ site.baseurl }}/images/dsa/dsa-logo.png" alt="DSA" style="width:50px;height:auto;opacity:0.8"><h4 style="margin:0">Deputy Sheriffs' Association</h4></div><p>13881 Danielson Street, Poway, CA 92064</p><p>(858) 486-9009 &middot; info@dsasd.org</p><p style="margin-top:8px;color:#1e3352">&copy; 2026 DSA San Diego County</p></div>
     <div class="ft-col"><h4>Navigate</h4><a href="#dashboard">Resources</a><a href="#news">News</a><a href="#events">Events</a><a href="#store">Store</a><a href="#faq">FAQ</a></div>
     <div class="ft-col"><h4>Support</h4><a href="#contact">Contact</a><a href="javascript:void(0)" onclick="openDetail('legal')">Legal Defense</a><a href="javascript:void(0)" onclick="openDetail('wellness')">Wellness</a><a href="javascript:void(0)" onclick="openDetail('forms')">Forms</a></div>
   </div>
