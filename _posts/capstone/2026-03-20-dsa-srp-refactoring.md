@@ -8,27 +8,34 @@ sticky_rank: 8
 ---
 
 <style>
-  .srp-blog { max-width: 900px; margin: 0 auto; font-family: 'Segoe UI', system-ui, sans-serif; color: #1e293b; line-height: 1.7; }
-  .srp-blog h2 { color: #0f2847; border-bottom: 2px solid #f59e0b; padding-bottom: 6px; margin-top: 2rem; }
-  .srp-blog h3 { color: #1e3a5f; margin-top: 1.5rem; }
-  .srp-blog .file-path { background: #f1f5f9; border-left: 3px solid #f59e0b; padding: 6px 12px; font-family: monospace; font-size: 0.85rem; color: #334155; margin: 12px 0 8px; border-radius: 0 6px 6px 0; }
+  .srp-blog { max-width: 900px; margin: 0 auto; font-family: 'Segoe UI', system-ui, sans-serif; color: #000000 !important; line-height: 1.7; }
+  .srp-blog h2 { color: #0f2847 !important; border-bottom: 2px solid #f59e0b; padding-bottom: 6px; margin-top: 2rem; }
+  .srp-blog h3 { color: #1e3a5f !important; margin-top: 1.5rem; }
+  .srp-blog p, .srp-blog li, .srp-blog td, .srp-blog strong, .srp-blog em { color: #000000 !important; }
+  .srp-blog .file-path { background: #f1f5f9; border-left: 3px solid #f59e0b; padding: 6px 12px; font-family: monospace; font-size: 0.85rem; color: #000000 !important; margin: 12px 0 8px; border-radius: 0 6px 6px 0; }
   .srp-blog .code-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
   .srp-blog .code-compare pre { margin: 0; font-size: 0.78rem; border-radius: 8px; padding: 14px; overflow-x: auto; }
   .srp-blog .old-code { background: #fef2f2; border: 1px solid #fecaca; }
-  .srp-blog .old-code code { color: #991b1b; }
+  .srp-blog .old-code code { color: #991b1b !important; }
   .srp-blog .new-code { background: #f0fdf4; border: 1px solid #bbf7d0; }
-  .srp-blog .new-code code { color: #166534; }
+  .srp-blog .new-code code { color: #166534 !important; }
   .srp-blog .label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-  .srp-blog .label-old { color: #dc2626; }
-  .srp-blog .label-new { color: #16a34a; }
-  .srp-blog .summary-card { background: linear-gradient(135deg, #0f2847, #1e3a5f); color: #e2e8f0; padding: 20px 24px; border-radius: 12px; margin: 20px 0; }
-  .srp-blog .summary-card h3 { color: #fbbf24; margin-top: 0; }
+  .srp-blog .label-old { color: #dc2626 !important; }
+  .srp-blog .label-new { color: #16a34a !important; }
+  .srp-blog .summary-card { background: linear-gradient(135deg, #0f2847, #1e3a5f); color: #e2e8f0 !important; padding: 20px 24px; border-radius: 12px; margin: 20px 0; }
+  .srp-blog .summary-card h3 { color: #fbbf24 !important; margin-top: 0; }
   .srp-blog .summary-card ul { padding-left: 18px; }
-  .srp-blog .summary-card li { margin-bottom: 4px; color: #cbd5e1; }
+  .srp-blog .summary-card li { margin-bottom: 4px; color: #cbd5e1 !important; }
+  .srp-blog .summary-card strong { color: #ffffff !important; }
+  .srp-blog .summary-card code { color: #fbbf24 !important; background: rgba(255,255,255,0.1); }
   .srp-blog table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.85rem; }
-  .srp-blog th { background: #0f2847; color: #fbbf24; padding: 10px 14px; text-align: left; }
-  .srp-blog td { padding: 8px 14px; border-bottom: 1px solid #e2e8f0; }
+  .srp-blog th { background: #0f2847; color: #fbbf24 !important; padding: 10px 14px; text-align: left; }
+  .srp-blog td { padding: 8px 14px; border-bottom: 1px solid #e2e8f0; color: #000000 !important; }
+  .srp-blog td strong { color: #000000 !important; }
+  .srp-blog td code { color: #334155 !important; }
   .srp-blog tr:nth-child(even) { background: #f8fafc; }
+  .srp-blog hr { border-color: #e2e8f0; }
+  .srp-blog blockquote { color: #000000 !important; }
   @media (max-width: 700px) { .srp-blog .code-compare { grid-template-columns: 1fr; } }
 </style>
 
