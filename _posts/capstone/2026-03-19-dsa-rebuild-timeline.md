@@ -155,7 +155,7 @@ sticky_rank: 8
   .dsa-week-card h3,
   .dsa-milestone h2,
   .dsa-outreach-card h3 {
-    color: var(--dsa-ink);
+    color: var(--dsa-ink) !important;
   }
 
   .dsa-summary-card p,
@@ -163,7 +163,7 @@ sticky_rank: 8
   .dsa-week-card p,
   .dsa-milestone p,
   .dsa-outreach-card p {
-    color: var(--dsa-muted);
+    color: var(--dsa-muted) !important;
     font-weight: 600;
     line-height: 1.7;
   }
@@ -173,7 +173,7 @@ sticky_rank: 8
   .dsa-week-card li,
   .dsa-milestone li,
   .dsa-outreach-card li {
-    color: #20384d;
+    color: #20384d !important;
     font-weight: 600;
     line-height: 1.65;
   }
@@ -230,7 +230,7 @@ sticky_rank: 8
   .dsa-week-chip {
     display: inline-block;
     background: var(--dsa-soft);
-    color: var(--dsa-accent);
+    color: var(--dsa-accent) !important;
     font-size: 0.8rem;
     font-weight: 800;
     text-transform: uppercase;
@@ -242,7 +242,7 @@ sticky_rank: 8
   }
 
   .dsa-week-date {
-    color: #27465e;
+    color: #27465e !important;
     font-weight: 700;
     white-space: nowrap;
   }
@@ -254,7 +254,7 @@ sticky_rank: 8
   }
 
   .dsa-focus {
-    color: var(--dsa-accent);
+    color: var(--dsa-accent) !important;
     font-weight: 800;
     margin-bottom: 0.65rem;
   }
@@ -266,7 +266,7 @@ sticky_rank: 8
 
   .dsa-week-card li {
     margin-bottom: 0.45rem;
-    color: #20384d;
+    color: #20384d !important;
     font-weight: 600;
     line-height: 1.65;
   }
@@ -286,7 +286,7 @@ sticky_rank: 8
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--dsa-accent);
+    color: var(--dsa-accent) !important;
     background: var(--dsa-soft);
     border-radius: 999px;
     padding: 0.35rem 0.65rem;
@@ -320,7 +320,7 @@ sticky_rank: 8
 
   .dsa-ownership-table td {
     background: #ffffff;
-    color: #173047;
+    color: #173047 !important;
     font-weight: 500;
   }
 
@@ -384,13 +384,13 @@ sticky_rank: 8
   }
 
   .dsa-outreach-step-text strong {
-    color: var(--dsa-ink);
+    color: var(--dsa-ink) !important;
     display: block;
     margin-bottom: 0.25rem;
   }
 
   .dsa-outreach-step-text span {
-    color: var(--dsa-muted);
+    color: var(--dsa-muted) !important;
     font-weight: 600;
     font-size: 0.95rem;
     line-height: 1.6;
