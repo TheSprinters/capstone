@@ -71,30 +71,33 @@ sticky_rank: 8
   }
 
   .srp-file-path {
-    background: #f1f5f9;
+    background: none;
     border-left: 3px solid #f59e0b;
     padding: 8px 14px;
     font-family: monospace;
     font-size: 0.85rem;
-    color: #334155 !important;
+    color: #000000 !important;
     margin: 0.75rem 0;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0;
   }
 
   .srp-compare {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin: 1rem 0;
+    margin: 1rem auto;
+    max-width: 100%;
   }
 
   .srp-compare pre {
     margin: 0;
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     border-radius: 10px;
-    padding: 14px;
+    padding: 12px;
     overflow-x: auto;
     line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
 
   .srp-old {
@@ -102,10 +105,9 @@ sticky_rank: 8
     border: 1px solid #fecaca;
   }
 
-  .srp-old code {
+  .srp-old code,
+  .srp-old pre code {
     color: #991b1b !important;
-    background: transparent !important;
-    padding: 0 !important;
   }
 
   .srp-new {
@@ -113,10 +115,9 @@ sticky_rank: 8
     border: 1px solid #bbf7d0;
   }
 
-  .srp-new code {
+  .srp-new code,
+  .srp-new pre code {
     color: #166534 !important;
-    background: transparent !important;
-    padding: 0 !important;
   }
 
   .srp-label {
@@ -181,9 +182,9 @@ sticky_rank: 8
 
   .srp-takeaway code {
     color: #fbbf24 !important;
-    background: rgba(255,255,255,0.1) !important;
-    padding: 1px 5px;
-    border-radius: 4px;
+    background: none !important;
+    padding: 0;
+    border-radius: 0;
     font-size: 0.82rem;
   }
 
@@ -218,6 +219,29 @@ sticky_rank: 8
 
   .srp-table tr:nth-child(even) td {
     background: #f8fafc;
+  }
+
+  /* Global override: kill any theme-level code shading */
+  .srp-wrap code,
+  .srp-wrap pre,
+  .srp-wrap pre code,
+  .srp-wrap kbd,
+  .srp-wrap samp {
+    background: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Restore intentional backgrounds on code compare blocks only */
+  .srp-old {
+    background: #fef2f2 !important;
+    border: 1px solid #fecaca !important;
+  }
+
+  .srp-new {
+    background: #f0fdf4 !important;
+    border: 1px solid #bbf7d0 !important;
   }
 
   @media (max-width: 700px) {

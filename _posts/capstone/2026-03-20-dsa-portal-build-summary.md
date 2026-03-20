@@ -372,6 +372,19 @@ sticky_rank: 8
     background: #f8fafc;
   }
 
+  /* Global override: kill any theme-level code shading */
+  .bs-wrap code,
+  .bs-wrap pre,
+  .bs-wrap pre code,
+  .bs-wrap kbd,
+  .bs-wrap samp {
+    background: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    color: #000000 !important;
+  }
+
   @media (max-width: 700px) {
     .bs-compare, .bs-feat-grid, .bs-work-grid, .bs-img-row, .bs-img-row.three, .bs-tech-grid { grid-template-columns: 1fr; }
     .bs-card { padding: 1.1rem; }
