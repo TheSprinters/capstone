@@ -63,11 +63,11 @@ sticky_rank: 8
   }
 
   .srp-card code {
-    background: #f1f5f9;
-    padding: 1px 6px;
-    border-radius: 4px;
+    background: none;
+    padding: 0;
+    border-radius: 0;
     font-size: 0.82rem;
-    color: #334155 !important;
+    color: #000000 !important;
   }
 
   .srp-file-path {
@@ -212,7 +212,8 @@ sticky_rank: 8
   }
 
   .srp-table td code {
-    color: #334155 !important;
+    color: #000000 !important;
+    background: none !important;
   }
 
   .srp-table tr:nth-child(even) td {
