@@ -589,15 +589,15 @@ search_exclude: true
       <div class="faq-tag" data-c="store">Store</div>
     </div>
     <div id="faqList">
-      <div class="fq" data-c="membership"><div class="fq-q" onclick="tFaq(this)"><span>How do I become a DSA member?</span><span class="t">+</span></div><div class="fq-a">All sworn personnel of the San Diego County Sheriff's Department are eligible. Contact the DSA office at (858) 486-9009 or visit headquarters at 13881 Danielson Street, Poway. Dues are automatically deducted from your paycheck and benefits begin immediately.</div></div>
-      <div class="fq" data-c="membership"><div class="fq-q" onclick="tFaq(this)"><span>What do membership dues cover?</span><span class="t">+</span></div><div class="fq-a">Dues cover legal defense, political representation, member benefits, organizational operations, and access to all DSA programs. Rates are set by the Board of Directors. Contact the office for current rates.</div></div>
-      <div class="fq" data-c="membership"><div class="fq-q" onclick="tFaq(this)"><span>What are Weingarten Rights?</span><span class="t">+</span></div><div class="fq-a">You have the right to request union representation at any investigatory interview that could lead to discipline. If management denies your request, the interview must stop. Contact a shop steward or the DSA office immediately.</div></div>
-      <div class="fq" data-c="benefits"><div class="fq-q" onclick="tFaq(this)"><span>What insurance benefits are available?</span><span class="t">+</span></div><div class="fq-a">Members have access to group health insurance (medical, dental, vision), life insurance, disability insurance, and supplemental coverage. We negotiate competitive rates with major providers. Coverage extends to you and your family.</div></div>
-      <div class="fq" data-c="benefits"><div class="fq-q" onclick="tFaq(this)"><span>When is open enrollment?</span><span class="t">+</span></div><div class="fq-a">Open enrollment is announced annually, typically in the fall. You can also make changes during qualifying life events such as marriage, birth of a child, or change in spouse's coverage.</div></div>
-      <div class="fq" data-c="legal"><div class="fq-q" onclick="tFaq(this)"><span>What legal defense does DSA provide?</span><span class="t">+</span></div><div class="fq-a">The Legal Defense Fund covers administrative investigations, IA interviews, Skelly hearings, critical incidents (24/7 response), and civil litigation from on-duty actions. Attorney fees, expert witnesses, and court costs are covered.</div></div>
-      <div class="fq" data-c="legal"><div class="fq-q" onclick="tFaq(this)"><span>What should I do after a critical incident?</span><span class="t">+</span></div><div class="fq-a">Call the DSA 24/7 legal hotline at (858) 486-9009 immediately. Do not give a detailed statement until your attorney arrives. You have the right to representation. The CISM team is also available for post-incident support.</div></div>
-      <div class="fq" data-c="events"><div class="fq-q" onclick="tFaq(this)"><span>How do I RSVP for events?</span><span class="t">+</span></div><div class="fq-a">Click the RSVP button next to any event on this page, call the office, or email info@dsasd.org. Most events are open to members and their immediate families.</div></div>
-      <div class="fq" data-c="store"><div class="fq-q" onclick="tFaq(this)"><span>How do I buy DSA merchandise?</span><span class="t">+</span></div><div class="fq-a">Browse the Store section above or visit DSA HQ in Poway. Online orders ship within 5-7 business days. Member discounts are applied automatically at checkout.</div></div>
+      <div class="fq" data-c="membership"><div class="fq-q" onclick="toggleFaqAnswer(this)"><span>How do I become a DSA member?</span><span class="t">+</span></div><div class="fq-a">All sworn personnel of the San Diego County Sheriff's Department are eligible. Contact the DSA office at (858) 486-9009 or visit headquarters at 13881 Danielson Street, Poway. Dues are automatically deducted from your paycheck and benefits begin immediately.</div></div>
+      <div class="fq" data-c="membership"><div class="fq-q" onclick="toggleFaqAnswer(this)"><span>What do membership dues cover?</span><span class="t">+</span></div><div class="fq-a">Dues cover legal defense, political representation, member benefits, organizational operations, and access to all DSA programs. Rates are set by the Board of Directors. Contact the office for current rates.</div></div>
+      <div class="fq" data-c="membership"><div class="fq-q" onclick="toggleFaqAnswer(this)"><span>What are Weingarten Rights?</span><span class="t">+</span></div><div class="fq-a">You have the right to request union representation at any investigatory interview that could lead to discipline. If management denies your request, the interview must stop. Contact a shop steward or the DSA office immediately.</div></div>
+      <div class="fq" data-c="benefits"><div class="fq-q" onclick="toggleFaqAnswer(this)"><span>What insurance benefits are available?</span><span class="t">+</span></div><div class="fq-a">Members have access to group health insurance (medical, dental, vision), life insurance, disability insurance, and supplemental coverage. We negotiate competitive rates with major providers. Coverage extends to you and your family.</div></div>
+      <div class="fq" data-c="benefits"><div class="fq-q" onclick="toggleFaqAnswer(this)"><span>When is open enrollment?</span><span class="t">+</span></div><div class="fq-a">Open enrollment is announced annually, typically in the fall. You can also make changes during qualifying life events such as marriage, birth of a child, or change in spouse's coverage.</div></div>
+      <div class="fq" data-c="legal"><div class="fq-q" onclick="toggleFaqAnswer(this)"><span>What legal defense does DSA provide?</span><span class="t">+</span></div><div class="fq-a">The Legal Defense Fund covers administrative investigations, IA interviews, Skelly hearings, critical incidents (24/7 response), and civil litigation from on-duty actions. Attorney fees, expert witnesses, and court costs are covered.</div></div>
+      <div class="fq" data-c="legal"><div class="fq-q" onclick="toggleFaqAnswer(this)"><span>What should I do after a critical incident?</span><span class="t">+</span></div><div class="fq-a">Call the DSA 24/7 legal hotline at (858) 486-9009 immediately. Do not give a detailed statement until your attorney arrives. You have the right to representation. The CISM team is also available for post-incident support.</div></div>
+      <div class="fq" data-c="events"><div class="fq-q" onclick="toggleFaqAnswer(this)"><span>How do I RSVP for events?</span><span class="t">+</span></div><div class="fq-a">Click the RSVP button next to any event on this page, call the office, or email info@dsasd.org. Most events are open to members and their immediate families.</div></div>
+      <div class="fq" data-c="store"><div class="fq-q" onclick="toggleFaqAnswer(this)"><span>How do I buy DSA merchandise?</span><span class="t">+</span></div><div class="fq-a">Browse the Store section above or visit DSA HQ in Poway. Online orders ship within 5-7 business days. Member discounts are applied automatically at checkout.</div></div>
     </div>
   </div>
 </div>
@@ -669,140 +669,407 @@ search_exclude: true
 </div>
 
 <script>
-const API = (location.hostname==='localhost'||location.hostname==='127.0.0.1') ? 'http://localhost:8587' : 'https://flask.opencodingsociety.com';
+/* ================================================================
+   CONFIG — single source for API base URL
+   ================================================================ */
+const API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+  ? 'http://localhost:8587'
+  : 'https://flask.opencodingsociety.com';
+
 let user = null;
 
-// Smooth scroll
-function scrollTo(sel) { document.querySelector(sel)?.scrollIntoView({behavior:'smooth'}); }
+/* ================================================================
+   DOM HELPERS — each does exactly one thing
+   ================================================================ */
 
-// Detail panels
-function openDetail(id) {
-  document.querySelectorAll('.detail-panel').forEach(p => p.classList.remove('open'));
-  const panel = document.getElementById('dp-'+id);
-  if (panel) { panel.classList.add('open'); panel.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+/** Scroll the viewport to the element matching `sel`. */
+function scrollTo(sel) {
+  document.querySelector(sel)?.scrollIntoView({ behavior: 'smooth' });
 }
-function closeDetail(id) { document.getElementById('dp-'+id)?.classList.remove('open'); }
 
-// RSVP
-function rsvp(btn) { btn.textContent = '✓ RSVP\'d'; btn.classList.add('done'); }
+/** Return a DOM element by id (shorthand). */
+function el(id) { return document.getElementById(id); }
 
-// FAQ
-function tFaq(el) { el.classList.toggle('open'); el.nextElementSibling.classList.toggle('open'); }
-document.querySelectorAll('.faq-tag').forEach(t => t.addEventListener('click', function() {
+/** Show an error message inside a `.modal-err` element. */
+function showError(elementId, message) {
+  const err = el(elementId);
+  err.textContent = message;
+  err.style.display = 'block';
+}
+
+/** Hide an error message element. */
+function hideError(elementId) {
+  el(elementId).style.display = 'none';
+}
+
+/** Sanitize a string for safe HTML insertion. */
+function sanitizeHTML(text) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\n/g, '<br>');
+}
+
+/** Make a JSON POST/PUT/DELETE request to the API. */
+function apiRequest(path, method, body) {
+  const opts = { method, credentials: 'include', headers: { 'Content-Type': 'application/json' } };
+  if (body) opts.body = JSON.stringify(body);
+  return fetch(`${API}${path}`, opts).then(r => {
+    if (!r.ok) return r.json().then(d => { throw new Error(d.message || d.error || 'Request failed'); });
+    return r.json();
+  });
+}
+
+/* ================================================================
+   DETAIL PANELS — open / close inline resource panels
+   ================================================================ */
+
+function closeAllDetailPanels() {
+  document.querySelectorAll('.detail-panel').forEach(p => p.classList.remove('open'));
+}
+
+function openDetail(id) {
+  closeAllDetailPanels();
+  const panel = el('dp-' + id);
+  if (panel) {
+    panel.classList.add('open');
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function closeDetail(id) {
+  el('dp-' + id)?.classList.remove('open');
+}
+
+/* ================================================================
+   RSVP — mark an event button as RSVP'd
+   ================================================================ */
+
+function rsvp(btn) {
+  btn.textContent = '\u2713 RSVP\'d';
+  btn.classList.add('done');
+}
+
+/* ================================================================
+   FAQ — toggle answers and filter by category / search
+   ================================================================ */
+
+function toggleFaqAnswer(questionEl) {
+  questionEl.classList.toggle('open');
+  questionEl.nextElementSibling.classList.toggle('open');
+}
+
+function filterFaqByCategory(category) {
+  document.querySelectorAll('.fq').forEach(f => {
+    f.style.display = (category === 'all' || f.dataset.c === category) ? '' : 'none';
+  });
+}
+
+function filterFaqBySearch(query) {
+  const q = query.toLowerCase();
+  document.querySelectorAll('.fq').forEach(f => {
+    f.style.display = f.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+function setActiveFaqTag(activeTag) {
   document.querySelectorAll('.faq-tag').forEach(x => x.classList.remove('on'));
-  this.classList.add('on');
-  const c = this.dataset.c;
-  document.querySelectorAll('.fq').forEach(f => f.style.display = (c==='all'||f.dataset.c===c) ? '' : 'none');
+  activeTag.classList.add('on');
+}
+
+document.querySelectorAll('.faq-tag').forEach(t => t.addEventListener('click', function() {
+  setActiveFaqTag(this);
+  filterFaqByCategory(this.dataset.c);
 }));
-document.getElementById('faqSearch').addEventListener('input', function() {
-  const q = this.value.toLowerCase();
-  document.querySelectorAll('.fq').forEach(f => f.style.display = f.textContent.toLowerCase().includes(q) ? '' : 'none');
+
+el('faqSearch').addEventListener('input', function() {
+  filterFaqBySearch(this.value);
 });
 
-// Search (scrolls to section)
+/* ================================================================
+   SEARCH — autocomplete dropdown that scrolls to sections
+   ================================================================ */
+
 const searchMap = [
-  {label:'Benefits & Insurance',target:'#dashboard',detail:'benefits'},
-  {label:'Legal Defense',target:'#dashboard',detail:'legal'},
-  {label:'Wellness Programs',target:'#dashboard',detail:'wellness'},
-  {label:'Forms & Documents',target:'#dashboard',detail:'forms'},
-  {label:'Newsletters',target:'#dashboard',detail:'newsletters'},
-  {label:'Political Action',target:'#dashboard',detail:'pac'},
-  {label:'Events Calendar',target:'#events'},
-  {label:'DSA Store',target:'#store'},
-  {label:'FAQ',target:'#faq'},
-  {label:'Contact Us',target:'#contact'},
-  {label:'About DSA',target:'#about'},
-  {label:'Latest News',target:'#news'},
-  {label:'Membership',target:'#faq'},
+  { label: 'Benefits & Insurance', target: '#dashboard', detail: 'benefits' },
+  { label: 'Legal Defense',        target: '#dashboard', detail: 'legal' },
+  { label: 'Wellness Programs',    target: '#dashboard', detail: 'wellness' },
+  { label: 'Forms & Documents',    target: '#dashboard', detail: 'forms' },
+  { label: 'Newsletters',          target: '#dashboard', detail: 'newsletters' },
+  { label: 'Political Action',     target: '#dashboard', detail: 'pac' },
+  { label: 'Events Calendar',      target: '#events' },
+  { label: 'DSA Store',            target: '#store' },
+  { label: 'FAQ',                  target: '#faq' },
+  { label: 'Contact Us',           target: '#contact' },
+  { label: 'About DSA',            target: '#about' },
+  { label: 'Latest News',          target: '#news' },
+  { label: 'Membership',           target: '#faq' },
 ];
-document.getElementById('searchInput').addEventListener('input', function() {
-  const q = this.value.toLowerCase().trim(), drop = document.getElementById('searchDrop');
+
+function findSearchMatches(query) {
+  return searchMap.filter(s => s.label.toLowerCase().includes(query.toLowerCase()));
+}
+
+function renderSearchDropdown(hits, dropdown) {
+  dropdown.innerHTML = hits.map(h =>
+    `<div class="search-item" data-target="${h.target}" data-detail="${h.detail || ''}">${h.label}</div>`
+  ).join('');
+}
+
+function handleSearchItemClick(item, dropdown) {
+  scrollTo(item.dataset.target);
+  if (item.dataset.detail) setTimeout(() => openDetail(item.dataset.detail), 400);
+  dropdown.classList.remove('open');
+  el('searchInput').value = '';
+}
+
+el('searchInput').addEventListener('input', function() {
+  const q = this.value.trim(), drop = el('searchDrop');
   if (q.length < 2) { drop.classList.remove('open'); return; }
-  const hits = searchMap.filter(s => s.label.toLowerCase().includes(q));
+  const hits = findSearchMatches(q);
   if (!hits.length) { drop.classList.remove('open'); return; }
-  drop.innerHTML = hits.map(h => `<div class="search-item" data-target="${h.target}" data-detail="${h.detail||''}">${h.label}</div>`).join('');
+  renderSearchDropdown(hits, drop);
   drop.classList.add('open');
-  drop.querySelectorAll('.search-item').forEach(it => it.addEventListener('click', function() {
-    scrollTo(this.dataset.target);
-    if (this.dataset.detail) setTimeout(() => openDetail(this.dataset.detail), 400);
-    drop.classList.remove('open');
-    document.getElementById('searchInput').value = '';
-  }));
-});
-document.addEventListener('click', e => {
-  if (!e.target.closest('.search-box')) document.getElementById('searchDrop').classList.remove('open');
-  if (!e.target.closest('.user-area')) document.getElementById('userPanel')?.classList.remove('open');
+  drop.querySelectorAll('.search-item').forEach(it =>
+    it.addEventListener('click', function() { handleSearchItemClick(this, drop); })
+  );
 });
 
-// Highlight active nav on scroll
-const sections = ['dashboard','news','events','about','store','faq','contact'];
-window.addEventListener('scroll', () => {
+/* ================================================================
+   CLICK-AWAY — close dropdowns when clicking outside
+   ================================================================ */
+
+function closeDropdownsOnClickAway(e) {
+  if (!e.target.closest('.search-box')) el('searchDrop').classList.remove('open');
+  if (!e.target.closest('.user-area')) el('userPanel')?.classList.remove('open');
+}
+
+document.addEventListener('click', closeDropdownsOnClickAway);
+
+/* ================================================================
+   NAV HIGHLIGHT — highlight the active nav link on scroll
+   ================================================================ */
+
+const sectionIds = ['dashboard', 'news', 'events', 'about', 'store', 'faq', 'contact'];
+
+function getActiveSection() {
   const y = window.scrollY + 120;
   let active = '';
-  sections.forEach(s => { const el = document.getElementById(s); if (el && el.offsetTop <= y) active = s; });
+  sectionIds.forEach(s => {
+    const section = el(s);
+    if (section && section.offsetTop <= y) active = s;
+  });
+  return active;
+}
+
+function highlightActiveNavLink() {
+  const active = getActiveSection();
   document.querySelectorAll('.nav-link').forEach(l => {
     l.classList.toggle('active', l.getAttribute('onclick')?.includes(active));
   });
-});
-
-// Modal
-function openModal(tab) { document.getElementById('modalBg').classList.add('open'); mTab(tab||'login'); }
-function closeModal() { document.getElementById('modalBg').classList.remove('open'); document.getElementById('lErr').style.display='none'; document.getElementById('sErr').style.display='none'; }
-function mTab(t) {
-  document.getElementById('tLog').classList.toggle('on',t==='login');
-  document.getElementById('tSign').classList.toggle('on',t==='signup');
-  document.getElementById('fLogin').style.display = t==='login'?'block':'none';
-  document.getElementById('fSign').style.display = t==='signup'?'block':'none';
-  document.getElementById('mTitle').textContent = t==='login'?'Member Login':'Create Account';
-  document.getElementById('mSub').textContent = t==='login'?'Access your DSA portal':'Register as a DSA member';
 }
 
-// Auth
+window.addEventListener('scroll', highlightActiveNavLink);
+
+/* ================================================================
+   MODAL — open / close / tab switching for login/signup
+   ================================================================ */
+
+function openModal(tab) {
+  el('modalBg').classList.add('open');
+  switchModalTab(tab || 'login');
+}
+
+function closeModal() {
+  el('modalBg').classList.remove('open');
+  hideError('lErr');
+  hideError('sErr');
+}
+
+function switchModalTab(t) {
+  const isLogin = (t === 'login');
+  el('tLog').classList.toggle('on', isLogin);
+  el('tSign').classList.toggle('on', !isLogin);
+  el('fLogin').style.display = isLogin ? 'block' : 'none';
+  el('fSign').style.display = isLogin ? 'none' : 'block';
+  el('mTitle').textContent = isLogin ? 'Member Login' : 'Create Account';
+  el('mSub').textContent = isLogin ? 'Access your DSA portal' : 'Register as a DSA member';
+}
+
+// kept as global alias so onclick="mTab(...)" in HTML still works
+function mTab(t) { switchModalTab(t); }
+
+/* ================================================================
+   AUTH — login, signup, logout, session check
+   ================================================================ */
+
+function getLoginCredentials() {
+  return { uid: el('lUid').value, password: el('lPw').value };
+}
+
+function getSignupData() {
+  return {
+    name: el('sName').value, uid: el('sUid').value,
+    sheriff_id: el('sSid').value, email: el('sEmail').value,
+    rank: el('sRank').value, station: el('sStation').value,
+    phone: el('sPhone').value, password: el('sPw').value,
+  };
+}
+
 function doLogin(e) {
   e.preventDefault();
-  fetch(`${API}/api/sheriff/authenticate`,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({uid:document.getElementById('lUid').value,password:document.getElementById('lPw').value})})
-  .then(r=>{if(!r.ok) return r.json().then(d=>{throw new Error(d.message||'Login failed')}); return r.json()})
-  .then(d=>{user=d.user; closeModal(); updateUI();})
-  .catch(err=>{const el=document.getElementById('lErr'); el.textContent=err.message; el.style.display='block';});
+  apiRequest('/api/sheriff/authenticate', 'POST', getLoginCredentials())
+    .then(d => { user = d.user; closeModal(); updateUI(); })
+    .catch(err => showError('lErr', err.message));
 }
+
 function doSignup(e) {
   e.preventDefault();
-  const body={name:document.getElementById('sName').value,uid:document.getElementById('sUid').value,sheriff_id:document.getElementById('sSid').value,email:document.getElementById('sEmail').value,rank:document.getElementById('sRank').value,station:document.getElementById('sStation').value,phone:document.getElementById('sPhone').value,password:document.getElementById('sPw').value};
-  fetch(`${API}/api/sheriff/user`,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify(body)})
-  .then(r=>{if(!r.ok) return r.json().then(d=>{throw new Error(d.message||'Signup failed')}); return r.json()})
-  .then(()=>{mTab('login'); document.getElementById('lUid').value=body.uid; alert('Account created! Please log in.');})
-  .catch(err=>{const el=document.getElementById('sErr'); el.textContent=err.message; el.style.display='block';});
+  const body = getSignupData();
+  apiRequest('/api/sheriff/user', 'POST', body)
+    .then(() => { switchModalTab('login'); el('lUid').value = body.uid; alert('Account created! Please log in.'); })
+    .catch(err => showError('sErr', err.message));
 }
+
 function logout() {
-  fetch(`${API}/api/sheriff/authenticate`,{method:'DELETE',credentials:'include'}).finally(()=>{user=null;updateUI();document.getElementById('userPanel').classList.remove('open');});
+  apiRequest('/api/sheriff/authenticate', 'DELETE')
+    .finally(() => { user = null; updateUI(); el('userPanel').classList.remove('open'); });
 }
+
+/* ================================================================
+   UI STATE — update header to reflect logged-in / logged-out
+   ================================================================ */
+
+function showLoggedInUI() {
+  el('authBtns').style.display = 'none';
+  el('userArea').classList.add('active');
+  el('uName').textContent = user.name.split(' ')[0];
+  el('upName').textContent = user.name;
+  el('upBadge').textContent = 'Badge: ' + user.sheriff_id;
+  el('upRank').textContent = 'Rank: ' + user.rank;
+  el('upStation').textContent = 'Station: ' + user.station;
+  el('adminBtn').style.display = user.role === 'Admin' ? 'block' : 'none';
+}
+
+function showLoggedOutUI() {
+  el('authBtns').style.display = 'flex';
+  el('userArea').classList.remove('active');
+  el('adminSection').classList.remove('open');
+}
+
 function updateUI() {
-  document.getElementById('authBtns').style.display = user?'none':'flex';
-  const ua = document.getElementById('userArea');
-  if(user){ua.classList.add('active');document.getElementById('uName').textContent=user.name.split(' ')[0];document.getElementById('upName').textContent=user.name;document.getElementById('upBadge').textContent='Badge: '+user.sheriff_id;document.getElementById('upRank').textContent='Rank: '+user.rank;document.getElementById('upStation').textContent='Station: '+user.station;document.getElementById('adminBtn').style.display=user.role==='Admin'?'block':'none';}
-  else{ua.classList.remove('active');document.getElementById('adminSection').classList.remove('open');}
+  user ? showLoggedInUI() : showLoggedOutUI();
 }
-function toggleAdmin(){const s=document.getElementById('adminSection');s.classList.toggle('open');if(s.classList.contains('open'))loadAdmin();document.getElementById('userPanel').classList.remove('open');if(s.classList.contains('open'))setTimeout(()=>s.scrollIntoView({behavior:'smooth'}),100);}
-function loadAdmin(){fetch(`${API}/api/sheriff/user`,{credentials:'include'}).then(r=>r.json()).then(users=>{document.getElementById('adminBody').innerHTML=users.map(u=>`<tr><td>${u.name}</td><td>${u.uid}</td><td>${u.sheriff_id}</td><td>${u.rank}</td><td>${u.station}</td><td>${u.email}</td><td><span class="badge-s badge-active">${u.status}</span></td></tr>`).join('');}).catch(e=>console.error(e));}
 
-// Chatbot (AI)
-let chatHist=[];
-function sendChat(){
-  const inp=document.getElementById('cbIn'),msg=inp.value.trim();if(!msg)return;inp.value='';
-  addMsg(msg,'user'); chatHist.push({role:'user',content:msg});
-  const tid=showTyping(),btn=document.getElementById('cbSend');btn.disabled=true;btn.textContent='...';
-  fetch(`${API}/api/sheriff/chat`,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({message:msg,history:chatHist.slice(-10)})})
-  .then(r=>{if(!r.ok)return r.json().then(d=>{throw new Error(d.error||'error')});return r.json()})
-  .then(d=>{rmTyping(tid);addMsg(d.reply,'bot');chatHist.push({role:'assistant',content:d.reply});})
-  .catch(()=>{rmTyping(tid);addMsg("Sorry, I can't connect right now. Call (858) 486-9009 or email info@dsasd.org.",'bot');})
-  .finally(()=>{btn.disabled=false;btn.textContent='Send';});
+/* ================================================================
+   ADMIN PANEL — toggle and load member table
+   ================================================================ */
+
+function toggleAdmin() {
+  const s = el('adminSection');
+  s.classList.toggle('open');
+  if (s.classList.contains('open')) loadAdmin();
+  el('userPanel').classList.remove('open');
+  if (s.classList.contains('open')) setTimeout(() => s.scrollIntoView({ behavior: 'smooth' }), 100);
 }
-function showTyping(){const c=document.getElementById('cbMsgs'),d=document.createElement('div'),id='t'+Date.now();d.id=id;d.className='cm bot';d.innerHTML='<div class="cb typing-dots"><span></span><span></span><span></span></div>';c.appendChild(d);c.scrollTop=c.scrollHeight;return id;}
-function rmTyping(id){document.getElementById(id)?.remove();}
-function addMsg(t,s){const c=document.getElementById('cbMsgs'),d=document.createElement('div');d.className='cm '+s;const safe=t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');d.innerHTML='<div class="cb">'+safe+'</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}
 
-// Check auth on load
-fetch(`${API}/api/sheriff/id`,{credentials:'include'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{user=d;updateUI()}).catch(()=>{});
+function renderAdminRow(u) {
+  return `<tr><td>${u.name}</td><td>${u.uid}</td><td>${u.sheriff_id}</td><td>${u.rank}</td><td>${u.station}</td><td>${u.email}</td><td><span class="badge-s badge-active">${u.status}</span></td></tr>`;
+}
+
+function loadAdmin() {
+  fetch(`${API}/api/sheriff/user`, { credentials: 'include' })
+    .then(r => r.json())
+    .then(users => { el('adminBody').innerHTML = users.map(renderAdminRow).join(''); })
+    .catch(e => console.error(e));
+}
+
+/* ================================================================
+   CHATBOT — AI-powered DSA FAQ assistant
+   ================================================================ */
+
+let chatHist = [];
+
+function getChatInput() {
+  const inp = el('cbIn');
+  const msg = inp.value.trim();
+  inp.value = '';
+  return msg;
+}
+
+function addChatMessage(text, sender) {
+  const container = el('cbMsgs');
+  const div = document.createElement('div');
+  div.className = 'cm ' + sender;
+  div.innerHTML = '<div class="cb">' + sanitizeHTML(text) + '</div>';
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function showTypingIndicator() {
+  const container = el('cbMsgs');
+  const div = document.createElement('div');
+  const id = 't' + Date.now();
+  div.id = id;
+  div.className = 'cm bot';
+  div.innerHTML = '<div class="cb typing-dots"><span></span><span></span><span></span></div>';
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+  return id;
+}
+
+function removeTypingIndicator(id) {
+  el(id)?.remove();
+}
+
+function disableChatSend() {
+  const btn = el('cbSend');
+  btn.disabled = true;
+  btn.textContent = '...';
+}
+
+function enableChatSend() {
+  const btn = el('cbSend');
+  btn.disabled = false;
+  btn.textContent = 'Send';
+}
+
+function sendChat() {
+  const msg = getChatInput();
+  if (!msg) return;
+
+  addChatMessage(msg, 'user');
+  chatHist.push({ role: 'user', content: msg });
+
+  const typingId = showTypingIndicator();
+  disableChatSend();
+
+  apiRequest('/api/sheriff/chat', 'POST', { message: msg, history: chatHist.slice(-10) })
+    .then(d => {
+      removeTypingIndicator(typingId);
+      addChatMessage(d.reply, 'bot');
+      chatHist.push({ role: 'assistant', content: d.reply });
+    })
+    .catch(() => {
+      removeTypingIndicator(typingId);
+      addChatMessage("Sorry, I can't connect right now. Call (858) 486-9009 or email info@dsasd.org.", 'bot');
+    })
+    .finally(enableChatSend);
+}
+
+/* ================================================================
+   INIT — check auth session on page load
+   ================================================================ */
+
+function checkExistingSession() {
+  fetch(`${API}/api/sheriff/id`, { credentials: 'include' })
+    .then(r => { if (!r.ok) throw 0; return r.json(); })
+    .then(d => { user = d; updateUI(); })
+    .catch(() => {});
+}
+
+checkExistingSession();
 </script>
 </body>
 </html>
