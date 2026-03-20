@@ -473,16 +473,36 @@ search_exclude: true
 
 <div class="detail-panel" id="dp-newsletters"><div class="dp-card">
   <button class="dp-close" onclick="closeDetail('newsletters')">&times;</button>
-  <h3>Newsletters & Publications</h3>
+  <h3>Silver Star Newsletter & Publications</h3>
   <div style="margin-bottom:16px;border-radius:10px;overflow:hidden"><img src="{{ site.baseurl }}/images/dsa/silver-star-newsletter.jpg" alt="Silver Star Newsletter" style="width:100%;max-height:180px;object-fit:cover;display:block"></div>
-  <p>Stay informed with DSA communications:</p>
+  <p>The <strong>Silver Star</strong> is the official DSA publication, delivered bi-monthly to all members. Browse recent issues below:</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0">
+    <div style="background:#0f2040;border-radius:8px;padding:14px;text-align:center;cursor:pointer" onclick="this.querySelector('.nl-peek').classList.toggle('open')">
+      <div style="font-size:0.7rem;color:#60a5fa;text-transform:uppercase;letter-spacing:1px">Mar/Apr 2026</div>
+      <div style="font-size:0.88rem;font-weight:700;color:#fff;margin:4px 0">Contract Update</div>
+      <div style="font-size:0.72rem;color:#475569">New MOU highlights, pay scale changes, wellness program expansion</div>
+      <div class="nl-peek" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid #1e3352;font-size:0.75rem;color:#94a3b8;text-align:left"><strong>Inside:</strong> President's Report, 2026 MOU Summary, Open Enrollment Reminder, Deputy of the Year Nominees, Golf Tournament Signup</div>
+    </div>
+    <div style="background:#0f2040;border-radius:8px;padding:14px;text-align:center;cursor:pointer" onclick="this.querySelector('.nl-peek').classList.toggle('open')">
+      <div style="font-size:0.7rem;color:#60a5fa;text-transform:uppercase;letter-spacing:1px">Jan/Feb 2026</div>
+      <div style="font-size:0.88rem;font-weight:700;color:#fff;margin:4px 0">Scholarship Issue</div>
+      <div style="font-size:0.72rem;color:#475569">Memorial scholarships, board election results, retirement seminar</div>
+      <div class="nl-peek" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid #1e3352;font-size:0.75rem;color:#94a3b8;text-align:left"><strong>Inside:</strong> 2026 Scholarship Applications, New Board Members, Legislative Update, Peer Support Spotlight, Holiday Recap</div>
+    </div>
+    <div style="background:#0f2040;border-radius:8px;padding:14px;text-align:center;cursor:pointer" onclick="this.querySelector('.nl-peek').classList.toggle('open')">
+      <div style="font-size:0.7rem;color:#60a5fa;text-transform:uppercase;letter-spacing:1px">Nov/Dec 2025</div>
+      <div style="font-size:0.88rem;font-weight:700;color:#fff;margin:4px 0">Year in Review</div>
+      <div style="font-size:0.72rem;color:#475569">Annual report, holiday events, Shop with a Deputy recap</div>
+      <div class="nl-peek" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid #1e3352;font-size:0.75rem;color:#94a3b8;text-align:left"><strong>Inside:</strong> 2025 Annual Report, Financial Summary, Christmas Party Photos, Children's Party, PAC Year-End Review</div>
+    </div>
+  </div>
+  <p style="font-size:0.84rem;color:#94a3b8"><strong>Also published:</strong></p>
   <ul>
-    <li><strong>Monthly Newsletter:</strong> DSA updates, member spotlights, benefit reminders, and legislative news.</li>
-    <li><strong>Board Meeting Minutes:</strong> Official records from monthly Board of Directors meetings.</li>
-    <li><strong>Annual Report:</strong> Year-in-review of DSA activities, financials, and accomplishments.</li>
-    <li><strong>Legislative Updates:</strong> Alerts on bills and policies affecting law enforcement in California.</li>
+    <li><strong>Board Meeting Minutes:</strong> Official records from monthly Board of Directors meetings</li>
+    <li><strong>Legislative Updates:</strong> Alerts on bills and policies affecting law enforcement in California</li>
+    <li><strong>President's Reports:</strong> Monthly updates from DSA leadership</li>
   </ul>
-  <div class="dp-contact">Subscribe to email updates: info@dsasd.org</div>
+  <div class="dp-contact">Subscribe to email updates: info@dsasd.org &mdash; Past issues available at DSA HQ or request via email</div>
 </div></div>
 
 <div class="detail-panel" id="dp-pac"><div class="dp-card">
