@@ -9,16 +9,21 @@ sticky_rank: 8
 
 <style>
   .dsa-timeline-page {
-    --dsa-ink: #102033;
-    --dsa-muted: #5b6b7f;
-    --dsa-line: rgba(12, 49, 84, 0.14);
-    --dsa-panel: linear-gradient(180deg, #ffffff 0%, #f5f8fc 100%);
-    --dsa-accent: #0d5c8f;
-    --dsa-accent-2: #18a0a8;
-    --dsa-soft: #e8f4fb;
-    --dsa-gold: #f4b544;
-    --dsa-shadow: 0 18px 45px rgba(16, 32, 51, 0.10);
+    --dsa-bg: linear-gradient(180deg, #f5f7fb 0%, #eef4f8 100%);
+    --dsa-ink: #12263a;
+    --dsa-muted: #4c6278;
+    --dsa-line: rgba(12, 49, 84, 0.12);
+    --dsa-panel: linear-gradient(180deg, #ffffff 0%, #f9fbfd 100%);
+    --dsa-accent: #0e5a86;
+    --dsa-accent-2: #2c9aa0;
+    --dsa-soft: #e5f2fa;
+    --dsa-gold: #e6a93f;
+    --dsa-shadow: 0 18px 45px rgba(16, 32, 51, 0.08);
     color: var(--dsa-ink);
+    background: var(--dsa-bg);
+    border: 1px solid rgba(14, 90, 134, 0.08);
+    border-radius: 30px;
+    padding: 1.4rem;
   }
 
   .dsa-timeline-page h2,
@@ -27,15 +32,22 @@ sticky_rank: 8
     color: var(--dsa-ink);
   }
 
+  .dsa-timeline-page p,
+  .dsa-timeline-page li,
+  .dsa-timeline-page td,
+  .dsa-timeline-page th {
+    color: var(--dsa-ink);
+  }
+
   .dsa-hero {
     background:
-      radial-gradient(circle at top right, rgba(24, 160, 168, 0.22), transparent 32%),
-      linear-gradient(135deg, #0b2742 0%, #114b74 55%, #16758d 100%);
+      radial-gradient(circle at top right, rgba(255, 255, 255, 0.24), transparent 32%),
+      linear-gradient(135deg, #12314d 0%, #175d84 58%, #2d8991 100%);
     color: #fff;
     border-radius: 28px;
     padding: 2.5rem 2rem;
     box-shadow: var(--dsa-shadow);
-    margin: 1.5rem 0 2rem;
+    margin: 0.35rem 0 2rem;
     overflow: hidden;
     position: relative;
   }
@@ -58,7 +70,8 @@ sticky_rank: 8
     font-weight: 700;
     padding: 0.45rem 0.75rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.18);
+    color: #f8fcff;
     margin-bottom: 1rem;
   }
 
@@ -70,7 +83,7 @@ sticky_rank: 8
   }
 
   .dsa-hero p {
-    color: rgba(255, 255, 255, 0.88);
+    color: rgba(255, 255, 255, 0.94);
     font-size: 1.02rem;
     max-width: 760px;
     margin-bottom: 1.5rem;
@@ -96,9 +109,10 @@ sticky_rank: 8
 
   .dsa-stat {
     padding: 1.1rem 1rem;
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.24);
     box-shadow: none;
+    backdrop-filter: blur(6px);
   }
 
   .dsa-stat-label {
@@ -106,7 +120,7 @@ sticky_rank: 8
     font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.72);
+    color: rgba(255, 255, 255, 0.8);
     margin-bottom: 0.35rem;
   }
 
@@ -123,6 +137,20 @@ sticky_rank: 8
   .dsa-summary-card {
     padding: 1.35rem 1.4rem;
     margin-bottom: 2rem;
+  }
+
+  .dsa-summary-card,
+  .dsa-team-card,
+  .dsa-week-card,
+  .dsa-milestone {
+    background: rgba(255, 255, 255, 0.96);
+  }
+
+  .dsa-summary-card p,
+  .dsa-team-card p,
+  .dsa-week-card p,
+  .dsa-milestone p {
+    color: var(--dsa-muted);
   }
 
   .dsa-summary-card p:last-child {
@@ -188,7 +216,7 @@ sticky_rank: 8
   }
 
   .dsa-week-date {
-    color: var(--dsa-muted);
+    color: #375168;
     font-weight: 600;
     white-space: nowrap;
   }
@@ -211,7 +239,7 @@ sticky_rank: 8
 
   .dsa-week-card li {
     margin-bottom: 0.45rem;
-    color: #1c3147;
+    color: #20384d;
   }
 
   .dsa-team-card {
@@ -253,13 +281,13 @@ sticky_rank: 8
   }
 
   .dsa-ownership-table th {
-    background: #103a5d;
+    background: linear-gradient(135deg, #12314d 0%, #175d84 100%);
     color: #fff;
     font-weight: 700;
   }
 
   .dsa-ownership-table td {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.98);
     color: #173047;
   }
 
@@ -291,6 +319,11 @@ sticky_rank: 8
   @media (max-width: 700px) {
     .dsa-hero {
       padding: 2rem 1.25rem;
+      border-radius: 22px;
+    }
+
+    .dsa-timeline-page {
+      padding: 0.9rem;
       border-radius: 22px;
     }
 
