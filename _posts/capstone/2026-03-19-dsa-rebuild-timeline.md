@@ -140,42 +140,22 @@ sticky_rank: 8
     margin-bottom: 2rem;
   }
 
-  /* Cards use dark text on white background */
+  /* Cards use black text on white background — force all children */
   .dsa-summary-card,
   .dsa-team-card,
   .dsa-week-card,
   .dsa-milestone,
   .dsa-outreach-card {
     background: #ffffff;
-    color: var(--dsa-ink);
+    color: #000000 !important;
   }
 
-  .dsa-summary-card h3,
-  .dsa-team-card h4,
-  .dsa-week-card h3,
-  .dsa-milestone h2,
-  .dsa-outreach-card h3 {
-    color: var(--dsa-ink) !important;
-  }
-
-  .dsa-summary-card p,
-  .dsa-team-card p,
-  .dsa-week-card p,
-  .dsa-milestone p,
-  .dsa-outreach-card p {
-    color: var(--dsa-muted) !important;
-    font-weight: 600;
-    line-height: 1.7;
-  }
-
-  .dsa-summary-card li,
-  .dsa-team-card li,
-  .dsa-week-card li,
-  .dsa-milestone li,
-  .dsa-outreach-card li {
-    color: #20384d !important;
-    font-weight: 600;
-    line-height: 1.65;
+  .dsa-summary-card *,
+  .dsa-team-card *,
+  .dsa-week-card *,
+  .dsa-milestone *,
+  .dsa-outreach-card * {
+    color: #000000 !important;
   }
 
   .dsa-summary-card p:last-child {
@@ -320,7 +300,7 @@ sticky_rank: 8
 
   .dsa-ownership-table td {
     background: #ffffff;
-    color: #173047 !important;
+    color: #000000 !important;
     font-weight: 500;
   }
 
